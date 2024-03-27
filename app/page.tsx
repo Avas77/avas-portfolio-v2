@@ -1,3 +1,5 @@
-export default function Home() {
-  return <div className="bg-primary px-0.5">HEllo World</div>;
-}
+const Home = () => {
+  return <div>This is Home Page</div>;
+};
+
+export default Home;
