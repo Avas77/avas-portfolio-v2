@@ -7,10 +7,17 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        "2xl": "1024px",
+      },
+    },
     colors: {
       background: "#282C33",
       primary: "#C778DD",
       gray: "#ABB2BF",
+      white: "#FFFFFF"
     },
     extend: {
       backgroundImage: {
