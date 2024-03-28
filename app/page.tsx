@@ -42,6 +42,11 @@ const Home = () => {
             className="absolute right-4 z-20 bottom-14"
           />
         </div>
+        <div className="flex items-center gap-[10px] border border-gray px-2 py-2 w-11/12">
+          <div className="bg-primary w-4 h-4" aria-hidden="true"></div>
+          <span className="text-gray before:">Currently working on </span>
+          <strong className="font-semibold">Portfolio</strong>
+        </div>
       </section>
     </main>
   );
