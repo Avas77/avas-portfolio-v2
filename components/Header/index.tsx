@@ -14,7 +14,7 @@ const Header = () => {
         />
         <span className="font-bold">Avas</span>
       </Link>
-      <nav>
+      <nav className="hidden sm:block">
         <NavItems />
       </nav>
     </header>
