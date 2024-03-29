@@ -2,12 +2,22 @@ import { socialLinks } from "@/constants/SocialLinks";
 import Image from "next/image";
 import React from "react";
 
-const SocialLinks = () => {
+interface ISocialLinkProps {
+  classNames: string;
+  size: number;
+}
+
+const SocialLinks = ({ classNames, size }: ISocialLinkProps) => {
   return (
-    <ul className="flex justify-center gap-2">
+    <ul className={`flex justify-center gap-2 ${classNames}`}>
       {socialLinks.map((link) => (
         <li key={link.id}>
-          <Image src={link.imgPath} alt={link.label} width={64} height={64} />
+          <Image
+            src={link.imgPath}
+            alt={link.label}
+            width={size}
+            height={size}
+          />
         </li>
       ))}
     </ul>
