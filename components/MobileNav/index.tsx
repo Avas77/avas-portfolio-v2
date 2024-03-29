@@ -26,7 +26,7 @@ const MobileNav = ({ closeMenu }: IMobileNavProps) => {
         <NavItems />
       </nav>
       <section className="mt-[107px]">
-        <SocialLinks />
+        <SocialLinks classNames="flex-row" size={64} />
       </section>
     </section>
   );
