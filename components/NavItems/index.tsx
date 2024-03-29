@@ -4,9 +4,9 @@ import React from "react";
 
 const NavItems = () => {
   return (
-    <ul className="flex gap-8">
+    <ul className="flex flex-col sm:flex gap-8 ">
       {headerLinks.map((link) => (
-        <li key={link.id}>
+        <li key={link.id} className="text-[32px] sm:text-base">
           <Link href={link.path}>
             <span className="text-primary">#</span>
             <span>{link.label}</span>
