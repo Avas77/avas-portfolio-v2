@@ -12,6 +12,7 @@ const ProjectBox = ({
   description,
   imgPath,
   url,
+  github,
 }: ProjectBoxProps) => {
   return (
     <article className="border border-gray basis-[330px]">
@@ -23,8 +24,8 @@ const ProjectBox = ({
         <h3 className="text-2xl font-medium">{name}</h3>
         <p className="text-gray">{description}</p>
         <div className="flex gap-4">
-          <LiveButton />
-          <CodeButton />
+          <LiveButton url={url} />
+          {github ? <CodeButton url={github} /> : null}
         </div>
       </section>
     </article>
