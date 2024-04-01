@@ -10,7 +10,7 @@ const Home = () => {
         <HeroText element={"Contact me!!"} />
         <HeroImage />
       </main>
-      <section className="flex justify-center">
+      <section className="flex justify-center relative">
         <Quote />
       </section>
       <article className="mt-[74px]">

@@ -3,6 +3,9 @@ import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import SideLinks from "@/components/SideLinks";
+import SideShapes from "@/components/SIdeShapes";
+import ILLSmallRectangle from "@/illustrations/ill-small-recatngle";
+import ILLLargeRectangle from "@/illustrations/ill-large-rectangle";
 
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
@@ -22,6 +25,12 @@ export default function RootLayout({
         className={`${firaCode.className} bg-background color text-white relative`}
       >
         <SideLinks />
+        <SideShapes classNames="right-0 top-[43%]">
+          <ILLSmallRectangle width={91} height={91} />
+        </SideShapes>
+        <SideShapes classNames="right-0 top-[78%]">
+          <ILLLargeRectangle width={155} height={155} />
+        </SideShapes>
         <div className="container">
           <Header />
           {children}
