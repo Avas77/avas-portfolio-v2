@@ -31,6 +31,7 @@ const Projects = () => {
             imgPath={project.imgPath}
             tech={project.tech}
             url={project.url}
+            github={project.github}
           />
         ))}
       </section>
