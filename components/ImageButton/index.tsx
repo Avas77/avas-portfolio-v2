@@ -1,18 +1,28 @@
 import Link from "next/link";
 import React from "react";
 
-interface IImageButtonProps {
+interface ILinkButtonProps {
   url: string;
-  classNames: string;
+  classNames?: string;
   children: React.ReactNode;
+  openInNewtab?: boolean;
 }
 
-const ImageButton = ({ url, classNames, children }: IImageButtonProps) => {
+const LinkButton = ({
+  url,
+  classNames,
+  children,
+  openInNewtab = false,
+}: ILinkButtonProps) => {
   return (
-    <Link href={url} className={classNames}>
+    <Link
+      href={url}
+      className={classNames}
+      target={openInNewtab ? "_blank" : "_self"}
+    >
       {children}
     </Link>
   );
 };
 
-export default ImageButton;
+export default LinkButton;
