@@ -25,10 +25,10 @@ export default function RootLayout({
         className={`${firaCode.className} bg-background color text-white relative`}
       >
         <SideLinks />
-        <SideShapes classNames="right-0 top-[43%]">
+        <SideShapes classNames="right-0 top-[672px]">
           <ILLSmallRectangle width={91} height={91} />
         </SideShapes>
-        <SideShapes classNames="right-0 top-[78%]">
+        <SideShapes classNames="right-0 top-[1160px]">
           <ILLLargeRectangle width={155} height={155} />
         </SideShapes>
         <div className="container">

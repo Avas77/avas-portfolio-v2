@@ -6,7 +6,9 @@ interface ISideShapes {
 }
 
 const SideShapes = ({ children, classNames }: ISideShapes) => {
-  return <div className={`absolute ${classNames}`}>{children}</div>;
+  return (
+    <div className={`absolute ${classNames} hidden xl:block`}>{children}</div>
+  );
 };
 
 export default SideShapes;
