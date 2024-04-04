@@ -16,7 +16,13 @@ const ProjectBox = ({
 }: ProjectBoxProps) => {
   return (
     <article className="border border-gray basis-[330px]">
-      <Image src={imgPath} alt={`${name} Website`} width={330} height={201} />
+      <Image
+        src={imgPath}
+        alt={`${name} Website`}
+        width={330}
+        height={201}
+        className="w-full"
+      />
       <section className="border border-gray p-2">
         <p className="text-gray">{tech}</p>
       </section>

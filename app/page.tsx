@@ -14,7 +14,7 @@ const Home = () => {
       <section className="flex justify-center relative mb-[74px]">
         <Quote />
       </section>
-      <article className="mb-[106px]">
+      <article className="mb-[106px] px-4 lg:px-0">
         <Projects />
       </article>
       {/* <section className="">

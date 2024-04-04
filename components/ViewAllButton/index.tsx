@@ -2,9 +2,13 @@ import React from "react";
 import Image from "next/image";
 import LinkButton from "../ImageButton";
 
-const ViewAllButton = () => {
+interface IViewAllButtonProps {
+  classNames?: string;
+}
+
+const ViewAllButton = ({ classNames }: IViewAllButtonProps) => {
   return (
-    <LinkButton url={"/projects"} classNames="self-center">
+    <LinkButton url={"/projects"} classNames={`self-center ${classNames}`}>
       <Image
         src={"/assets/view-all.svg"}
         alt="view all btn"
