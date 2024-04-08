@@ -7,7 +7,7 @@ const Skills = () => {
   return (
     <>
       <BlockHeader title="skills" classNames="w-[213px]" />
-      <div className="flex">
+      <div className="flex gap-[59px] min-h-[300px]">
         <Shapes />
         <SkillsList />
       </div>
