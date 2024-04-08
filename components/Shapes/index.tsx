@@ -3,7 +3,7 @@ import React from "react";
 
 const Shapes = () => {
   return (
-    <div className="relative basis-[349px]">
+    <div className="relative basis-[349px] hidden sm:block">
       <Image
         src="/assets/Dots.svg"
         alt="Dots"
@@ -20,14 +20,14 @@ const Shapes = () => {
       />
       <Image
         src="/assets/rectangle.svg"
-        alt="Dots"
+        alt="Rectangle"
         width={86}
         height={86}
         className="absolute top-3 right-[46px]"
       />
       <Image
         src="/assets/rectangle.svg"
-        alt="Dots"
+        alt="Rectangle"
         width={52}
         height={52}
         className="absolute bottom-[37px] right-0"

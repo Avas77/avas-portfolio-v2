@@ -17,7 +17,7 @@ const Home = () => {
       <article className="mb-[106px] px-4 lg:px-0">
         <Projects />
       </article>
-      <section className="mb-28">
+      <section className="mb-28 px-4 lg:px-0">
         <Skills />
       </section>
     </>
