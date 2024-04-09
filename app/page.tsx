@@ -1,3 +1,4 @@
+import About from "@/components/About";
 import HeroImage from "@/components/HeroImage";
 import HeroText from "@/components/HeroText";
 import Projects from "@/components/Projects";
@@ -19,6 +20,9 @@ const Home = () => {
       </article>
       <section className="mb-28 px-4 lg:px-0">
         <Skills />
+      </section>
+      <section className="mb-28 h-full">
+        <About />
       </section>
     </>
   );
