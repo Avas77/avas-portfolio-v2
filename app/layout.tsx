@@ -6,6 +6,8 @@ import SideLinks from "@/components/SideLinks";
 import SideShapes from "@/components/SIdeShapes";
 import ILLSmallRectangle from "@/illustrations/ill-small-recatngle";
 import ILLLargeRectangle from "@/illustrations/ill-large-rectangle";
+import Image from "next/image";
+import SideShapesGroup from "@/components/SideShapesGroup";
 
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
@@ -22,15 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${firaCode.className} bg-background color text-white relative`}
+        className={`${firaCode.className} bg-background color text-white relative overflow-x-hidden`}
       >
         <SideLinks />
-        <SideShapes classNames="right-0 top-[672px]">
-          <ILLSmallRectangle width={91} height={91} />
-        </SideShapes>
-        <SideShapes classNames="right-0 top-[1160px]">
-          <ILLLargeRectangle width={155} height={155} />
-        </SideShapes>
+        <SideShapesGroup />
         <div className="container">
           <Header />
           {children}
