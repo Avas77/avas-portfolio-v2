@@ -1,11 +1,15 @@
 import React from "react";
 import PrimaryButton from "../PrimaryButton";
+import Image from "next/image";
 
 const Description = () => {
   const showMoreDescButton = (
-    <div>
-      <p>Read more</p>
-    </div>
+    <Image
+      src={"/assets/read-more.svg"}
+      alt="Read more"
+      width={116}
+      height={21}
+    />
   );
   return (
     <div className="mt-[23px]">
