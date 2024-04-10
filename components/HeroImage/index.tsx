@@ -3,7 +3,7 @@ import React from "react";
 
 const HeroImage = () => {
   return (
-    <section className="basis-9/12 px-[22px] lg:px-0">
+    <section className="basis-9/12 px-[22px] xl:px-0">
       <div className="relative">
         <Image
           src={"/assets/purple-line.svg"}

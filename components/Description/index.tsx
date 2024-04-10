@@ -13,7 +13,7 @@ const Description = () => {
   );
   return (
     <div className="mt-[23px]">
-      <p className="flex flex-col gap-7 text-gray pr-16">
+      <p className="flex flex-col gap-7 text-gray lg:pr-16 text-justify md:text-left">
         <span>Hello, i’m Avas!</span>
         <span>
           I’m a self-taught full-stack developer based in Kathmandu, Nepal. I

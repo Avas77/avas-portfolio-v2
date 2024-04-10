@@ -8,7 +8,7 @@ import MobileNav from "../MobileNav";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <header className="w-full flex justify-between items-center px-4 lg:px-0 pt-[19px] pb-2 lg:pt-8">
+    <header className="w-full flex justify-between items-center px-4 xl:px-0 pt-[19px] pb-2 lg:pt-8">
       <Logo />
       <nav className="hidden sm:block">
         <NavItems />
