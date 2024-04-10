@@ -3,7 +3,7 @@ import React from "react";
 
 const AboutHero = () => {
   return (
-    <div className="flex-1 relative">
+    <div className="flex-1 relative hidden lg:block">
       <Image
         src="/assets/Dots.svg"
         alt="Dots"

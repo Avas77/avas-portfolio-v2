@@ -15,13 +15,13 @@ const Home = () => {
       <section className="flex justify-center relative mb-[74px]">
         <Quote />
       </section>
-      <article className="mb-[106px] px-4 lg:px-0">
+      <article className="mb-[106px] px-4 xl:px-0">
         <Projects />
       </article>
-      <section className="mb-28 px-4 lg:px-0">
+      <section className="mb-28 px-4 xl:px-0 lg:min-h-[405px]">
         <Skills />
       </section>
-      <section className="mb-28 h-full">
+      <section className="mb-28 h-full px-4 xl:px-0">
         <About />
       </section>
     </>

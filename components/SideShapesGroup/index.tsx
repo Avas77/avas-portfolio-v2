@@ -10,7 +10,7 @@ const SideShapesGroup = () => {
       <SideShapes classNames="right-0 top-[672px]">
         <ILLSmallRectangle width={91} height={91} />
       </SideShapes>
-      <SideShapes classNames="right-[-40px] top-[1160px]">
+      <SideShapes classNames="right-0 top-[1160px]">
         <ILLLargeRectangle width={155} height={155} />
       </SideShapes>
       <SideShapes classNames="left-[-40px] rotate-180 top-[2255px]">

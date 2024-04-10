@@ -16,7 +16,7 @@ const Projects = () => {
         />
         <ViewAllButton classNames="hidden md:block" />
       </section>
-      <section className="mt-12 gap-4 grid sm:grid-cols-2 lg:grid-cols-3">
+      <section className="mt-12 gap-6 md:gap-4 grid sm:grid-cols-2 lg:grid-cols-3">
         {mainProjects.map((project) => (
           <ProjectBox
             key={project.id}
