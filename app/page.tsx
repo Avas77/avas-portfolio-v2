@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import Contacts from "@/components/Contacts";
 import HeroImage from "@/components/HeroImage";
 import HeroText from "@/components/HeroText";
 import Projects from "@/components/Projects";
@@ -24,6 +25,7 @@ const Home = () => {
       <section className="mb-28 h-full px-4 xl:px-0">
         <About />
       </section>
+      <Contacts />
     </>
   );
 };
