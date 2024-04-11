@@ -3,11 +3,9 @@ import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import SideLinks from "@/components/SideLinks";
-import SideShapes from "@/components/SIdeShapes";
-import ILLSmallRectangle from "@/illustrations/ill-small-recatngle";
-import ILLLargeRectangle from "@/illustrations/ill-large-rectangle";
 import Image from "next/image";
 import SideShapesGroup from "@/components/SideShapesGroup";
+import Footer from "@/components/Footer";
 
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
@@ -32,6 +30,7 @@ export default function RootLayout({
           <Header />
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );

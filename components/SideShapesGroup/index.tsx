@@ -24,6 +24,14 @@ const SideShapesGroup = () => {
           height={103}
         />
       </SideShapes>
+      <SideShapes classNames="bottom-[405px] left-[-42px] rotate-90">
+        <Image
+          src="/assets/horizontal-dot.svg"
+          alt="dots"
+          width={103}
+          height={103}
+        />
+      </SideShapes>
     </>
   );
 };
