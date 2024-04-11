@@ -4,16 +4,16 @@ import SocialContact from "../SocialContact";
 
 const Contacts = () => {
   return (
-    <section className="mb-[145px]">
+    <section className="mb-[145px] px-4 xl:px-0">
       <BlockHeader title="contacts" classNames="w-[127px]" />
-      <div className="flex mt-[45px]">
+      <div className="flex mt-[45px] flex-col md:flex-row">
         <div className="flex-1">
-          <p className="w-[505px] text-gray">
+          <p className="w-full sm:w-[505px] text-gray text-justify md:text-left">
             I’m interested in freelance opportunities. However, if you have
             other request or question, don’t hesitate to contact me
           </p>
         </div>
-        <div className="flex-1 flex justify-end">
+        <div className="flex-1 flex justify-center md:justify-end mt-20 md:mt-0">
           <section className="border border-white p-4 w-fit">
             <h6 className="font-semibold mb-4">Message me here</h6>
             <div className="flex flex-col gap-2">
