@@ -14,11 +14,11 @@ const Description = () => {
   return (
     <div className="mt-[23px]">
       <p className="flex flex-col gap-7 text-gray lg:pr-16 text-justify md:text-left">
-        <span>Hello, i’m Avas!</span>
+        <span>Hello, i&apos;m Avas!</span>
         <span>
-          I’m a self-taught full-stack developer based in Kathmandu, Nepal. I
-          can develop responsive websites and web applications from scratch and
-          raise them into modern user-friendly web experiences.
+          I&apos;m a self-taught full-stack developer based in Kathmandu, Nepal.
+          I can develop responsive websites and web applications from scratch
+          and raise them into modern user-friendly web experiences.
         </span>
         <span>
           Turning creativity and skills into awesome websites is what I love
