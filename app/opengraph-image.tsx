@@ -18,6 +18,9 @@ export default async function Image() {
       <div
         style={{
           display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
           width: "100%",
           height: "100%",
           background: "#282C33",
@@ -33,7 +36,6 @@ export default async function Image() {
           <h2 style={{ fontSize: "48px" }}>Avas Bajracharya</h2>
           <p style={{ fontSize: "24px" }}>Welcome to my profile</p>
         </div>
-        <img src="/assets/about-img.png" alt="Person" />
       </div>
     ),
     // ImageResponse options
