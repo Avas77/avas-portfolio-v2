@@ -3,7 +3,6 @@ import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import SideLinks from "@/components/SideLinks";
-import Image from "next/image";
 import SideShapesGroup from "@/components/SideShapesGroup";
 import Footer from "@/components/Footer";
 
