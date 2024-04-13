@@ -8,6 +8,9 @@ export const size = {
   height: 630,
 };
 
+export const url = "https://avas-portfolio-v2.vercel.app/";
+export const type = "website";
+
 export const contentType = "image/png";
 
 // Image generation
