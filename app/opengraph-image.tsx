@@ -35,8 +35,8 @@ export default async function Image() {
           position: "relative",
         }}
       >
-        <h5 style={{ fontSize: "22px", marginBottom: 0 }}>AVAS BAJRACHARYA</h5>
-        <h1 style={{ fontSize: "65px", textAlign: "center" }}>
+        <h5 style={{ fontSize: "35px", marginBottom: 0 }}>AVAS BAJRACHARYA</h5>
+        <h1 style={{ fontSize: "70px", textAlign: "center" }}>
           Welcome to my Awesome Portfolio
         </h1>
         <button
@@ -47,7 +47,6 @@ export default async function Image() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginBottom: "10px",
           }}
         >
           View more
