@@ -1,4 +1,4 @@
-export const projectInfo = [
+export const clientApps = [
   {
     id: 1,
     name: "Agencyheight",
@@ -19,12 +19,12 @@ export const projectInfo = [
   },
   {
     id: 3,
-    name: "Nike Redesigned",
-    tech: "Next.js Typescript Tailwind CSS Node.js Express.js MongoDB",
-    imgPath: "/assets/project_img/nike.png",
-    description: "Full stack website for Nike shoes page redesigned",
-    url: "https://nike-project-plum.vercel.app/",
-    github: "https://github.com/Avas77/nike-project",
+    name: "Nav Solution",
+    tech: "HTML CSS Javascript Jquery Bootstrap",
+    imgPath: "/assets/project_img/nav.png",
+    description:
+      "Nav solution is pvt. ltd. company under Act of Nepal, working on ICT (Information and Communication Technology) in pursuit of delivering excellent service",
+    url: "https://navsolution.com.np/",
   },
   {
     id: 4,
@@ -42,18 +42,29 @@ export const projectInfo = [
     description: "Educational and Playground Equipment Seller Website",
     url: "https://www.eplkid.com/",
   },
-
   {
     id: 6,
-    name: "Nav Solution",
+    name: "Urja Developers",
     tech: "HTML CSS Javascript Jquery Bootstrap",
-    imgPath: "/assets/project_img/nav.png",
+    imgPath: "/assets/project_img/urja.png",
     description:
-      "Nav solution is pvt. ltd. company under Act of Nepal, working on ICT (Information and Communication Technology) in pursuit of delivering excellent service",
-    url: "https://navsolution.com.np/",
+      "Urja Developers or simply, Urja, is a rising brand in the renewable energy sector. Driven by sustainability and ethical work values, Urja is growing as a holistic solution provider  for the energy sector.",
+    url: "https://urjadevelopers.com/",
+  },
+];
+
+export const personalApps = [
+  {
+    id: 1,
+    name: "Nike Redesigned",
+    tech: "Next.js Typescript Tailwind CSS Node.js Express.js MongoDB",
+    imgPath: "/assets/project_img/nike.png",
+    description: "Full stack website for Nike shoes page redesigned",
+    url: "https://nike-project-plum.vercel.app/",
+    github: "https://github.com/Avas77/nike-project",
   },
   {
-    id: 7,
+    id: 2,
     name: "Covid - 19 Info and Tracker Application",
     tech: "React.js Material UI Github",
     imgPath: "/assets/project_img/covid.png",
@@ -63,7 +74,7 @@ export const projectInfo = [
     github: "https://github.com/robina-bajracharya/fight-covid",
   },
   {
-    id: 8,
+    id: 3,
     name: "Avas Portfolio V1",
     tech: "React.js Material UI Sass",
     imgPath: "/assets/project_img/portfolio.png",
@@ -73,16 +84,7 @@ export const projectInfo = [
     github: "https://github.com/Avas77/portfolio",
   },
   {
-    id: 9,
-    name: "Urja Developers",
-    tech: "HTML CSS Javascript Jquery Bootstrap",
-    imgPath: "/assets/project_img/urja.png",
-    description:
-      "Urja Developers or simply, Urja, is a rising brand in the renewable energy sector. Driven by sustainability and ethical work values, Urja is growing as a holistic solution provider  for the energy sector.",
-    url: "https://urjadevelopers.com/",
-  },
-  {
-    id: 10,
+    id: 4,
     name: "Burger Builder",
     tech: "React.js CSS Firebase Github",
     imgPath: "/assets/project_img/burger.png",
@@ -90,5 +92,15 @@ export const projectInfo = [
       "Build your own type of burger using your own recipe. Add or remove ingredients as you like to make your burger tasty. It has User-friendly UI. Finally, place an order for your burger.",
     url: "https://burger-builder-32682.web.app/",
     github: "https://github.com/Avas77/BurgerBuilder",
+  },
+  {
+    id: 5,
+    name: "Voice Powered Expense Tracker",
+    tech: "React.js CSS Speechly Github",
+    imgPath: "/assets/project_img/expense-tracker.png",
+    description:
+      "Web Application that helps you keep track of your income and expenses to make sure you dont overspend your budget. It has the added functionality of adding incomes and expense data with your voice so you dont have to type every word.",
+    url: "https://avas-expense-tracker-2022.netlify.app/",
+    github: "https://github.com/Avas77/expense-tracker",
   },
 ];
