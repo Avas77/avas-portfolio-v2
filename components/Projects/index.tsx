@@ -1,11 +1,11 @@
 import React from "react";
 import BlockHeader from "../BlockHeader";
-import ProjectBox from "../ProjectBox";
-import { projectInfo } from "@/constants/ProjectInfo";
 import ViewAllButton from "../ViewAllButton";
+import ProjectsBoxList from "../ProjectsBoxList";
+import { clientApps } from "@/constants/ProjectInfo";
 
 const Projects = () => {
-  const mainProjects = projectInfo.slice(0, 3);
+  const mainProjects = clientApps.slice(0, 3);
 
   return (
     <section className="mb-[106px]">
@@ -16,20 +16,7 @@ const Projects = () => {
         />
         <ViewAllButton classNames="hidden md:block" />
       </section>
-      <section className="mt-12 gap-6 md:gap-4 grid sm:grid-cols-2 lg:grid-cols-3">
-        {mainProjects.map((project) => (
-          <ProjectBox
-            key={project.id}
-            id={project.id}
-            name={project.name}
-            description={project.description}
-            imgPath={project.imgPath}
-            tech={project.tech}
-            url={project.url}
-            github={project.github}
-          />
-        ))}
-      </section>
+      <ProjectsBoxList projects={mainProjects} />
       <div className="flex md:hidden mt-16 justify-end">
         <ViewAllButton />
       </div>
