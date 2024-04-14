@@ -2,9 +2,9 @@ import Image from "next/image";
 import React from "react";
 import LiveButton from "../LiveButton";
 import CodeButton from "../CodeButton";
-import { projectInfo } from "@/constants/ProjectInfo";
+import { Project } from "@/types/ProjectType";
 
-type ProjectBoxProps = (typeof projectInfo)[0];
+type ProjectBoxProps = Project;
 
 const ProjectBox = ({
   name,
