@@ -8,7 +8,7 @@ const About = () => {
     <section className="flex">
       <section className="lg:basis-7/12">
         <BlockHeader title="about-me" classNames="w-[326px] hidden md:block" />
-        <Description />
+        <Description classNames="mt-[23px]" showButton />
       </section>
       <AboutHero />
     </section>

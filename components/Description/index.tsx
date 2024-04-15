@@ -2,7 +2,12 @@ import React from "react";
 import PrimaryButton from "../PrimaryButton";
 import Image from "next/image";
 
-const Description = () => {
+interface IDescriptionProps {
+  classNames?: string;
+  showButton: boolean;
+}
+
+const Description = ({ classNames, showButton }: IDescriptionProps) => {
   const showMoreDescButton = (
     <Image
       src={"/assets/read-more.svg"}
@@ -12,7 +17,7 @@ const Description = () => {
     />
   );
   return (
-    <div className="mt-[23px]">
+    <div className={classNames}>
       <p className="flex flex-col gap-7 text-gray lg:pr-16 text-justify md:text-left">
         <span>Hello, i&apos;m Avas!</span>
         <span>
@@ -28,7 +33,9 @@ const Description = () => {
           continually embracing the latest technologies and frameworks.
         </span>
       </p>
-      <PrimaryButton element={showMoreDescButton} classNames="mt-[27px]" />
+      {showButton ? (
+        <PrimaryButton element={showMoreDescButton} classNames="mt-[27px]" />
+      ) : null}
     </div>
   );
 };
