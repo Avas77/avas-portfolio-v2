@@ -1,5 +1,6 @@
 import AboutDescription from "@/components/AboutDescription";
 import AboutSkills from "@/components/AboutSkills";
+import FunFacts from "@/components/FunFacts";
 import React from "react";
 
 const AboutMe = () => {
@@ -7,6 +8,7 @@ const AboutMe = () => {
     <section className="mt-[53px]">
       <AboutDescription />
       <AboutSkills />
+      <FunFacts />
     </section>
   );
 };
