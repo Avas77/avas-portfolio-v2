@@ -10,7 +10,7 @@ interface ISkillsListProps {
 const SkillsList = ({ classNames, boxClassNames }: ISkillsListProps) => {
   return (
     <div className={classNames}>
-      {skillsList.map((item, index) => (
+      {skillsList.map((item) => (
         <SkillBox
           key={item.skillGroup}
           groupName={item.skillGroup}

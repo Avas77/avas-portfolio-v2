@@ -3,7 +3,7 @@ import React from "react";
 
 const AboutShapes = () => {
   return (
-    <div className="relative flex-1 h-[169px] mr-[85px]">
+    <div className="relative flex-1 h-[169px] mr-[85px] hidden lg:block">
       <Image src="/assets/Dots.svg" alt="dots" width={64} height={64} />
       <Image
         src="/assets/purple-line.svg"

@@ -5,7 +5,7 @@ import React from "react";
 
 const AboutMe = () => {
   return (
-    <section className="mt-[53px]">
+    <section className="mt-[53px] px-4 xl:px-0">
       <AboutDescription />
       <AboutSkills />
       <FunFacts />
