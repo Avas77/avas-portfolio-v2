@@ -2,9 +2,11 @@ import React from "react";
 import Logo from "../Logo";
 import Image from "next/image";
 
-const Footer = () => {
+const Footer = ({ classNames }: { classNames: string }) => {
   return (
-    <footer className="flex flex-col border-t border-gray px-4 xl:px-0">
+    <footer
+      className={`flex flex-col border-t border-gray px-4 xl:px-0 ${classNames}`}
+    >
       <div className="flex flex-col md:flex-row justify-between container mt-8 gap-8">
         <div className="flex flex-col gap-4">
           <div className="flex gap-6">
