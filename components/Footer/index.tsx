@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../Logo";
 import Image from "next/image";
 
-const Footer = ({ classNames }: { classNames: string }) => {
+const Footer = ({ classNames }: { classNames?: string }) => {
   return (
     <footer
       className={`flex flex-col border-t border-gray px-4 xl:px-0 ${classNames}`}
