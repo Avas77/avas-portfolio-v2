@@ -3,22 +3,30 @@ import BlockHeader from "../BlockHeader";
 import SocialContact from "../SocialContact";
 import ContactsDescription from "../ContactsDescription";
 import ContactsBox from "../ContactsBox";
+import LinkButton from "../ImageButton";
 
 const Contacts = () => {
   const socailContacts = (
     <>
-      <SocialContact
-        path={"/assets/social-links/Linkedin.svg"}
-        label="Avas Bajracharya"
-        width={30}
-        height={20}
-      />
-      <SocialContact
-        path={"/assets/social-links/mail.svg"}
-        label="avasbajracharya9"
-        width={30}
-        height={32}
-      />
+      <LinkButton
+        openInNewtab
+        url="https://www.linkedin.com/in/avas-bajracharya-640357200/"
+      >
+        <SocialContact
+          path={"/assets/social-links/Linkedin.svg"}
+          label="Avas Bajracharya"
+          width={30}
+          height={20}
+        />
+      </LinkButton>
+      <LinkButton url="mailto:avasbajracharya9@gmail.com">
+        <SocialContact
+          path={"/assets/social-links/mail.svg"}
+          label="avasbajracharya9"
+          width={30}
+          height={32}
+        />
+      </LinkButton>
     </>
   );
   return (

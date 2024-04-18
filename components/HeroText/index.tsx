@@ -1,5 +1,6 @@
 import React from "react";
 import PrimaryButton from "../PrimaryButton";
+import LinkButton from "../ImageButton";
 
 const HeroText = () => {
   return (
@@ -14,10 +15,12 @@ const HeroText = () => {
         I make websites that load quickly and work well on all devices. I focus
         on making them easy for people to use and enjoy
       </p>
-      <PrimaryButton
-        element={"Contact me !!"}
-        classNames="mt-6 hidden sm:block"
-      />
+      <LinkButton url={"/contacts"}>
+        <PrimaryButton
+          element={"Contact me !!"}
+          classNames="mt-6 hidden sm:block"
+        />
+      </LinkButton>
     </section>
   );
 };
