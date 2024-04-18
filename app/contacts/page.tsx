@@ -33,16 +33,16 @@ const Contacts = () => {
     </>
   );
   return (
-    <section className="mt-[53px]">
+    <section className="mt-[53px] px-4 xl:px-0">
       <PageHeader title="contacts" description="Reach out to me" />
-      <div className="flex justify-between gap-[100px] mt-[46px] mb-[25px]">
+      <div className="flex flex-col md:flex-row justify-between gap-[80px] md:gap-[100px] mt-[46px] mb-[75px] md:mb-[25px]">
         <ContactsDescription />
-        <div className="flex gap-[11px]">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-[11px]">
           <ContactsBox contents={content} title="Support me here" />
           <ContactsBox contents={socailContacts} title="Message me here" />
         </div>
       </div>
-      <div className="flex flex-col gap-[21px]">
+      <div className="flex flex-col gap-[21px] mb-[60px]">
         <BlockHeader title="all-media" classNames="hidden" />
         <div className="flex items-center gap-[5px]">
           <Image

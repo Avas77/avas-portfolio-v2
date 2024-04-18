@@ -13,7 +13,7 @@ const Contactslayout = ({
         <Header />
         {children}
       </section>
-      <Footer classNames={"fixed bottom-0 w-full"} />
+      <Footer classNames={"md:fixed bottom-0 w-full"} />
     </>
   );
 };
