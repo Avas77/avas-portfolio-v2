@@ -1,6 +1,7 @@
 import React from "react";
 import PrimaryButton from "../PrimaryButton";
 import Image from "next/image";
+import LinkButton from "../ImageButton";
 
 interface IDescriptionProps {
   classNames?: string;
@@ -34,7 +35,9 @@ const Description = ({ classNames, showButton }: IDescriptionProps) => {
         </span>
       </p>
       {showButton ? (
-        <PrimaryButton element={showMoreDescButton} classNames="mt-[27px]" />
+        <LinkButton url={"/about-me"}>
+          <PrimaryButton element={showMoreDescButton} classNames="mt-[27px]" />
+        </LinkButton>
       ) : null}
     </div>
   );

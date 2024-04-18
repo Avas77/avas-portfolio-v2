@@ -1,6 +1,8 @@
 import React from "react";
 import Logo from "../Logo";
 import Image from "next/image";
+import { socialLinks } from "@/constants/SocialLinks";
+import LinkButton from "../ImageButton";
 
 const Footer = ({ classNames }: { classNames?: string }) => {
   return (
@@ -18,24 +20,16 @@ const Footer = ({ classNames }: { classNames?: string }) => {
         <div className="flex flex-col gap-3">
           <h5 className="font-bold text-2xl">Media</h5>
           <div className="flex gap-2">
-            <Image
-              src="/assets/social-links/Linkedin.svg"
-              alt="LinkedIn"
-              width={32}
-              height={32}
-            />
-            <Image
-              src="/assets/social-links/Github.svg"
-              alt="Github"
-              width={32}
-              height={32}
-            />
-            <Image
-              src="/assets/social-links/Twitter.svg"
-              alt="Twitter"
-              width={32}
-              height={32}
-            />
+            {socialLinks.map((link) => (
+              <LinkButton openInNewtab url={link.url} key={link.id}>
+                <Image
+                  src={link.imgPath}
+                  alt={link.label}
+                  width={32}
+                  height={32}
+                />
+              </LinkButton>
+            ))}
           </div>
         </div>
       </div>
