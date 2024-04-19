@@ -1,6 +1,7 @@
 import BlockHeader from "@/components/BlockHeader";
 import ContactsBox from "@/components/ContactsBox";
 import ContactsDescription from "@/components/ContactsDescription";
+import LinkButton from "@/components/ImageButton";
 import PageHeader from "@/components/PageHeader";
 import SocialContact from "@/components/SocialContact";
 import Image from "next/image";
@@ -10,7 +11,7 @@ import React from "react";
 const Contacts = () => {
   const content = (
     <span>
-      <Link href="/" target="_blank">
+      <Link href="https://github.com/Avas77" target="_blank">
         Avas77
       </Link>
     </span>
@@ -18,18 +19,25 @@ const Contacts = () => {
 
   const socailContacts = (
     <>
-      <SocialContact
-        path={"/assets/social-links/Linkedin.svg"}
-        label="Avas Bajracharya"
-        width={30}
-        height={20}
-      />
-      <SocialContact
-        path={"/assets/social-links/mail.svg"}
-        label="avasbajracharya9"
-        width={30}
-        height={32}
-      />
+      <LinkButton
+        url="https://www.linkedin.com/in/avas-bajracharya-640357200/"
+        openInNewtab
+      >
+        <SocialContact
+          path={"/assets/social-links/Linkedin.svg"}
+          label="Avas Bajracharya"
+          width={30}
+          height={20}
+        />
+      </LinkButton>
+      <LinkButton url="mailto:avasbajracharya9@gmail.com">
+        <SocialContact
+          path={"/assets/social-links/mail.svg"}
+          label="avasbajracharya9"
+          width={30}
+          height={32}
+        />
+      </LinkButton>
     </>
   );
   return (
