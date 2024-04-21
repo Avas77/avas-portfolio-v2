@@ -2,8 +2,13 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SideShapes from "@/components/SIdeShapes";
 import SideLinks from "@/components/SideLinks";
+import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Contacts",
+};
 
 const Contactslayout = ({
   children,
