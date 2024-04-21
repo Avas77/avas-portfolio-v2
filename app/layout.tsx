@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     template: "%s - Full Stack Developer Portfolio",
     default: "Avas Bajracharya - Full Stack Developer Portfolio",
   },
+  metadataBase: new URL("https://avasbajracharya.com.np/"),
+  openGraph: {
+    url: "https://avasbajracharya.com.np/",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
