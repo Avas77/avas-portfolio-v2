@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://avas-portfolio-v2.vercel.app/sitemap.xml",
+    sitemap: "https://avasbajracharya.com.np/sitemap.xml",
   };
 }
