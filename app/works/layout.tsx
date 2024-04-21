@@ -2,7 +2,12 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SideLinks from "@/components/SideLinks";
 import WorksPageShapes from "@/components/WorksPageShapes";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Works",
+};
 
 const WorksLayout = ({
   children,

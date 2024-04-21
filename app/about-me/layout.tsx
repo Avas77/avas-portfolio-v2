@@ -2,7 +2,12 @@ import AboutPageShapes from "@/components/AboutPageShapes";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SideLinks from "@/components/SideLinks";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 
 const AboutLayout = ({
   children,
