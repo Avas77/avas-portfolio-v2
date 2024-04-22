@@ -23,6 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta
+        name="google-site-verification"
+        content="nuGI4rjLYF7lGE8_K9xP3CoCEqbScYSeE02f3F_VzJ0"
+      />
       <body
         className={`${firaCode.className} bg-background text-white relative overflow-x-hidden`}
       >
