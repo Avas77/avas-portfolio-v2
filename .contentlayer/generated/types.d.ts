@@ -19,7 +19,7 @@ export type Blog = {
   image?: string | undefined
   /** MDX file body */
   body: MDX
-
+  slug: string
 }  
 
 /** Nested types */

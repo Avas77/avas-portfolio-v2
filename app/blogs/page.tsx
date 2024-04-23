@@ -15,7 +15,7 @@ const Blogs = () => {
       <BlockHeader title="blog" classNames="hidden" />
       <section className="mt-4 mb-14 flex flex-col gap-4">
         {blogs.map((blog) => (
-          <Link href={"/"} key={blog._id}>
+          <Link href={`/blogs/${blog.slug}`} key={blog._id}>
             <BlogCard {...blog} />
           </Link>
         ))}

@@ -1,18 +1,24 @@
 ---
-title: "Dynamic Form using schema based UI"
+title: "Dynamic Form using Schema-Based UI"
 summary: "Overview and examples of some exicitng features coming in ES2022."
 type: Blog
 publishedAt: 2022-03-28
 ---
 
-# Welcome to my MDX page!
+If your application needs to work with many forms and data collection flows, then writing forms in JSX(React) can be very repetitive. Even though we might try to extract the standard components, the core problem lies in displaying the right set of inputs according to the type of form.
 
-This is some **bold** and _italics_ text.
+For Example, let's say you are building a car insurance registration form where the form needs to be dynamic according to the response of the user. In the first form, the user needs to enter his basic details and details about his automobile, and based on this info, different other forms need to be rendered to get the best insurance plan. Such as there is an input field for Is this vehicle owned, leased or financed? , and if the user answers saying the car is owned by the user then in the next form questions need to be asked about Is this vehicle registered to the insured or a spouse? . If the user responds as the car is leased then in the next form. questions about the leasing company could be asked. And, similarly, another input field may occur if the user answers as financed.
 
-This is a list in markdown:
+Now, one way to do this would be by conditionally rendering the above-mentioned fields according to the response of the user and for this simple case, it may be reasonable as well. But, let us imagine that the form grows in size and number and different fields need to be rendered according to the different responses of the user. We would have to keep track of all of the responses and render fields accordingly, the code becomes convoluted and unmanageable as it further grows. Not to mention adding validation rules, post-validation, and sending the complete data to the server according to the correct fields becomes super complex. So, how can we be able to tackle this simply? The answer is Schema Based UI. Let's have a look at it next.
 
-- One
-- Two
-- Three
+## First Step: Creating a Next js project
 
-Checkout my React component:
+Let's start by creating a simple Next.js project using either npm or yarn. In this tutorial, I will be using npm. Run this command in your terminal.
+
+`npx create-next-app@latest`
+
+After the installation is complete, run npm run dev to start the development server.
+
+### Create a simple API route in Next.js:
+
+After the creation of our project, the first step we need to do is to create a simple Next js API. For that, we can create a folder inside the pages directory of the Next.js project called API and in there create a file called input.js.

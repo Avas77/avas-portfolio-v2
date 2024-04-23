@@ -17,7 +17,7 @@ const config: Config = {
       background: "#282C33",
       primary: "#C778DD",
       gray: "#ABB2BF",
-      white: "#FFFFFF"
+      white: "#FFFFFF",
     },
     extend: {
       backgroundImage: {
@@ -27,6 +27,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;

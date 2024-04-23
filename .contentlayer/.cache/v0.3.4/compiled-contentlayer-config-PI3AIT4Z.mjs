@@ -1,5 +1,14 @@
 // contentlayer.config.ts
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import {
+  defineDocumentType,
+  makeSource
+} from "contentlayer/source-files";
+var computedFields = {
+  slug: {
+    type: "string",
+    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, "")
+  }
+};
 var Blog = defineDocumentType(() => ({
   name: "Blog",
   filePathPattern: `**/*.mdx`,
@@ -19,7 +28,8 @@ var Blog = defineDocumentType(() => ({
     },
     image: {
       type: "string"
-    }
+    },
+    computedFields
   }
 }));
 var contentlayer_config_default = makeSource({ contentDirPath: "content", documentTypes: [Blog] });
@@ -27,4 +37,4 @@ export {
   Blog,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-GBDK2F6A.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-PI3AIT4Z.mjs.map
