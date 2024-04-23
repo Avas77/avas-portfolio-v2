@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: #fff;
+}
+.prose code {
+  color: #fff;
+}
+
+.prose a {
+  color: #fff;
+}
+
 @layer components {
   .skillBox {
     @apply lg:[&:nth-child(4)]:col-start-3 lg:[&:nth-child(4)]:col-end-4 lg:[&:nth-child(5)]:col-start-2 lg:[&:nth-child(5)]:col-end-3 lg:[&:nth-child(5)]:row-start-2 lg:[&:nth-child(5)]:row-end-3 lg:[&:nth-child(4)]:mt-[73px];
