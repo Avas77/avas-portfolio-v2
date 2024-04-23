@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../contentlayer.config.ts"],
+  "sourcesContent": ["import { defineDocumentType, makeSource } from \"contentlayer/source-files\";\n\nexport const Blog = defineDocumentType(() => ({\n  name: \"Blog\",\n  filePathPattern: `**/*.mdx`,\n  contentType: \"mdx\",\n  fields: {\n    title: {\n      type: \"string\",\n      required: true,\n    },\n    publishedAt: {\n      type: \"string\",\n      required: true,\n    },\n    summary: {\n      type: \"string\",\n      required: true,\n    },\n    image: {\n      type: \"string\",\n    },\n  },\n}));\n\nexport default makeSource({ contentDirPath: \"content\", documentTypes: [Blog] });\n"],
+  "mappings": ";AAAA,SAAS,oBAAoB,kBAAkB;AAExC,IAAM,OAAO,mBAAmB,OAAO;AAAA,EAC5C,MAAM;AAAA,EACN,iBAAiB;AAAA,EACjB,aAAa;AAAA,EACb,QAAQ;AAAA,IACN,OAAO;AAAA,MACL,MAAM;AAAA,MACN,UAAU;AAAA,IACZ;AAAA,IACA,aAAa;AAAA,MACX,MAAM;AAAA,MACN,UAAU;AAAA,IACZ;AAAA,IACA,SAAS;AAAA,MACP,MAAM;AAAA,MACN,UAAU;AAAA,IACZ;AAAA,IACA,OAAO;AAAA,MACL,MAAM;AAAA,IACR;AAAA,EACF;AACF,EAAE;AAEF,IAAO,8BAAQ,WAAW,EAAE,gBAAgB,WAAW,eAAe,CAAC,IAAI,EAAE,CAAC;",
+  "names": []
+}
