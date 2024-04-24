@@ -17,7 +17,7 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
   if (!blog) throw new Error(`Post not found for slug: ${params.slug}`);
 
   return (
-    <article className="py-8 prose text-white mx-auto max-w-none mt-14">
+    <article className="py-8 pb-20 prose text-white mx-auto max-w-none mt-14">
       <div className="mb-8 text-center">
         <time
           dateTime={blog.publishedAt}
