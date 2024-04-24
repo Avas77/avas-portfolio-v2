@@ -43,42 +43,6 @@ export const Blog = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: "src/content/",
+  contentDirPath: "content/",
   documentTypes: [Blog],
-  mdx: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        //@ts-expect-error
-        rehypePrettyCode,
-        {
-          theme: "one-dark-pro",
-          keepBackground: false,
-
-          onVisitHighlightedLine(node: LineElement) {
-            if (
-              node.properties.className &&
-              node.properties.className.length > 0
-            ) {
-              node.properties.className.push("line--highlighted");
-            } else {
-              node.properties.className = ["line--highlighted"];
-            }
-          },
-          onVisitHighlightedChars(node: CharsElement) {
-            node.properties.className = ["word--highlighted"];
-          },
-        },
-      ],
-      [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ["anchor"],
-          },
-        },
-      ],
-    ],
-  },
 });

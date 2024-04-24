@@ -1,0 +1,155 @@
+---
+title: Things you might not know about TS
+summary: "Some of the technical aspects of typescript that you dinot know about"
+type: Blog
+publishedAt: 2021-03-02
+---
+
+Typescript is awesome language. I have been using it for one year now and I my love towards the language is infinity. It's commonly known as the superset of Javascript, but it's much more than that. Typescript helps a lot during the day to day development work, also it helps a lot to avoid the unnecessary painful bugs.
+
+Here, in this articles I am going to present some features ina `Typescript` that you might not know and that may come handy in your day to day life. Are you excited to go through the features?
+
+## @ts-expect-error
+
+Let's assume a case where you have a case where the ts compiling is yelling at you that you are doing something wrong,
+
+```ts
+const multiply = (a: number, b: number) => a + b;
+multiply("12", 13);
+```
+
+Here, TS compiler yells at you with the message
+`Argument of type 'string' is not assignable to parameter of type`
+
+Let's say you cannot change the type of the first argument and temporarily want to surpress the error being shown by the TS compiler, normally we use `@ts-ignore` to surpress the error
+
+```ts
+const multiply = (a: number, b: number) => a * b;
+// @ts-ignore
+multiply("12", 13);
+```
+
+Now, after some time, you fixed the error and changed the first argument of the `multiply` function from `'12'` to `12`
+
+```ts
+const multiply = (a: number, b: number) => a + b;
+// @ts-ignore
+multiply(12, 13);
+```
+
+but, you forgot to remove the `@ts-ignore` directive we used previously, so basically it will keep ignoring the next line forever unless you remove it which may cause bug in the future.
+
+So in this case, we can make use of `@ts-expect-error` directive, which does the same job as the `@ts-ignore` directive but as soon as the error is fixed, the TS compiler yells at you
+
+```ts
+const multiply = (a: number, b: number) => a + b;
+// @ts-expect-error
+multiply(12, 13);
+```
+
+`Unused '@ts-expect-error' directive.`
+
+This reminds you to remove the directive as soon as the error is fixed.
+
+## never type
+
+You have a function that takes an error status code and always throws an error according to the status, the `never` type comes handy when you know a `function` is never going to reach it's end point.
+
+The difference between `never` and `void` is, while `void` means atleast `undefined` or `null` is being returned, `never` means the function's end point is never reached.
+
+```ts
+function throwError(error: string): never {
+  throw new Error(error);
+}
+```
+
+## Template Literal Types
+
+Tempplate literal types are similar to string litreral types in javascript but are specific to types. Let's say you have a library that implements a popover and there is a type for positioning the popover
+
+```ts
+type popoverPositions =
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "top-left"
+  | "top-right"
+  | "top-center"
+  | "bottom-left"
+  | "bottom-right"
+  | "bottom-center";
+```
+
+It can be hectic to combine all the possible permutations and combinations for all the types
+
+using template literal types, you can separate the directions and combine the types to get a new type that consists of all the possible combinations
+
+```ts
+type positions = "top" | "bottom" | "center";
+type directions = "left" | "right" | "center";
+type popoverPositions = positions | directions | `${positions}-${directions}`;
+```
+
+which will generate all the types as
+
+```ts
+type popoverPositions =
+  | positions
+  | directions
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-right"
+  | "center-left"
+  | "center-right";
+```
+
+## Null assertions
+
+Null assertions basically tells your TS compiler that your value is nor `null` neither `undefined`. Let's say you have initialized the value as
+`let myNumber:null | number = null;`
+but later on you update the value of myNumber
+`myNumber = 69;`
+
+Now, lets assume you have a function that accepts only numbers,
+
+```ts
+const add = (a: number, b: number) => {
+  return a + b;
+};
+add(myNumber, 1);
+```
+
+The compiler yells at you saying
+` Argument of type 'null' is not assignable to parameter of type 'number'.`
+
+So here, you can make use of null assertions width bang `!` in the end of the variable to tell the compiler that the value we are sending is not null
+
+```ts
+const add = (a: number, b: number) => {
+  return a + b;
+};
+add(myNumber!, 1);
+```
+
+The code above compiles successfully.
+
+## Merging Interfaces
+
+Megring Interfaces is the type of `declaration merging`, when you have two interfeces with the same name, it merges and creates a single interface
+
+```ts
+interface Box {
+  height: number;
+  width: number;
+}
+interface Box {
+  scale: number;
+}
+let box: Box = { height: 5, width: 6, scale: 10 };
+```
+
+So here, we can create two separate interfaces with the same name which in turn gets merged to a single one and can be used as per the example mentioned above.
+
+I hope, you learnt something new from the list above.
