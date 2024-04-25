@@ -7,8 +7,6 @@ publishedAt: 2022-03-28
 
 Storybook is widely used in building live playgrounds and documenting component libraries, as you have the power to change props values, check loading states amongst other defined functionalities.
 
-<img alt="Storybook Controls" src={useBaseUrl("img/storybook/storybook.png")} />
-
 Storybook doesn't stop with just adding components, it provides the ability to configure [Addons](https://storybook.js.org/addons) that enhance the core capabilities opening up a lot of possibilities.
 
 ### Addons
@@ -124,19 +122,11 @@ export const Base = (args: ButtonProps) => <Button {...args} >{args.variant}</Bu
 
 ```
 
-<img
-  alt="Storybook Controls"
-  src={useBaseUrl("img/storybook/avatar-control.gif")}
-/>
+![Storybook Controls](/assets/storybook/avatar-control.gif)
 
 ### Story source
 
 When building a component system, the purpose is that anyone can easily use these components. But if you don't have documentation, someone would have to open up the file or try to find another use example.
-
-<img
-  alt="Storybook Source"
-  src={useBaseUrl("img/storybook/story-source.gif")}
-/>
 
 Alternatively, Story Source displays the source code of the story file you created, lets someone browsing your Storybook dashboard to get an example right along with the component output!
 
@@ -213,7 +203,7 @@ module.exports = {
 
 When you install `addon-docs` in your project you get auto generated component documentation by pulling information from your stories, components, source code, and story metadata.
 
-<img alt="Storybook Source" src={useBaseUrl("img/storybook/avatar-doc.gif")} />
+![Storybook Source](/assets/storybook/avatar-doc.gif)
 
 We can write our own documentation for every component if we want to by creating MDX and add that doc in story like that:
 
@@ -268,14 +258,9 @@ No longer support for SIZE.XSMALL (XSMALL) and so on. Consider using sm for 'XSM
 ```
 
 And here's how that's rendered in Storybook:
-
-<img
-  alt="Storybook Source"
-  src={useBaseUrl("img/storybook/avatar-custom-doc.gif")}
-/>
+![Storybook Source](/assets/storybook/avatar-custom-doc.gif)
 
 For more can [see this documentation.](https://storybook.js.org/docs/react/writing-docs/introduction)
 
 "I will be writing on more features of storybook soon", till then Happy Story making!!
-
-<img alt="Storybook Source" src={useBaseUrl("img/storybook/making.gif")} />
+![Storybook Source](/assets/storybook/making.gif)
