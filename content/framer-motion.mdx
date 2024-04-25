@@ -1,0 +1,251 @@
+---
+title: Framer Motion
+summary: "Framer motion"
+type: Blog
+publishedAt: 2022-03-28
+---
+
+## What is Framer Motion?
+
+Framer Motion is an animation library that makes creating animations easy. Its simplified <abbr title="Application programming interface">API</abbr> helps us abstract the complexities behind animations and allows us to create animations with ease.
+
+We can think of Framer Motion as more of an improvement or reinvention of an existing animation library than a brand new one.
+
+<section style={{ width: "100%", textAlign: "center" }}>
+  <img
+    alt="Notification First State"
+    src={useBaseUrl("img/framer-motion/framer-motion-logo.png")}
+    style={{ width: "25%" }}
+  />
+</section>
+
+> This article is divided into two parts in this part the main focus is comparing the Framer Motion with css animations.
+
+### Setup
+
+We can start with framer-motion by simply installing it with
+
+```
+npm install framer-motion
+```
+
+### Why Framer Motion?
+
+When I was first introduced to framer-motion, I was like, "Why would anyone use an external library for animation if we can achieve the same with <abbr title="Cascading Style Sheets">CSS</abbr>? I had the same impression when I came across framer-motion."
+
+Found out there are many reasons. Let's dive and find out why?
+
+### I create a simple animation with css and framer motion to clear my dought so here we go....
+
+#### Using css
+
+```tsx
+//html
+<div className="animation-container">
+  <div className="element" />
+</div>
+```
+
+```css
+.element {
+  height: 150px;
+  width: 150px;
+  margin: 0 auto;
+  background: red;
+  animation: rotateElement 2.5s ease-in-out infinite;
+}
+
+.animation-container {
+  display: flex;
+  align-items: center;
+  min-height: 50vh;
+}
+
+@keyframes rotateElement {
+  0% {
+    transform: scale(1);
+    border-radius: 20%;
+  }
+  15% {
+    transform: scale(1) rotate(0deg);
+    border-radius: 20%;
+  }
+  30% {
+    transform: scale(2) rotate(0deg);
+    border-radius: 20%;
+  }
+  45% {
+    transform: scale(2) rotate(0deg);
+    border-radius: 20%;
+  }
+  60% {
+    transform: scale(2) rotate(270deg);
+    border-radius: 50%;
+  }
+  75% {
+    transform: scale(1) rotate(270deg);
+    border-radius: 50%;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    border-radius: 20%;
+  }
+}
+```
+
+#### Using framer motion
+
+```tsx
+<Center h="100vh">
+  <motion.div
+    animate={{
+      scale: [1, 2, 2, 1, 1],
+      rotate: [0, 0, 270, 270, 0],
+      borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+    }}
+    style={{ background: "red", width: "150px", height: "150px" }}
+  />
+</Center>
+```
+
+#### Outcome
+
+<Animation />
+
+I was a little bit convinced about adopting framer motion to <abbr title="Cascading Style Sheets">CSS</abbr>. But... what if there are complex animations? Can it be achieved using framer motion? So I tried some more examples using framer motion and CSS. Check them out, and put your thoughts on which one you find more convenient?
+
+### Example 1
+
+#### Animation using CSS
+
+<iframe
+  src="https://codesandbox.io/embed/css-animation-nq0f7?fontsize=14&hidenavigation=1&theme=dark"
+  title="css-animation"
+  width="100%"
+  border-radius="4px"
+  height="750px"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+/>
+
+#### Animation using Framer Motion
+
+<iframe
+  src="https://codesandbox.io/embed/framer-stagger-children-zss4q?fontsize=14&hidenavigation=1&theme=dark"
+  title="Framer-stagger-children"
+  width="100%"
+  border-radius="4px"
+  height="750px"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+/>
+
+### Example 2
+
+#### Animation using CSS
+
+{" "}
+
+<iframe
+  src="https://codesandbox.io/embed/css-animation-2-vlcsz?fontsize=14&hidenavigation=1&theme=dark"
+  title="css-animation-2"
+  width="100%"
+  border-radius="4px"
+  height="500px"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+/>
+
+#### Animation using Framer Motion
+
+<iframe
+  src="https://codesandbox.io/embed/framer-motion-2-or942?fontsize=14&hidenavigation=1&theme=dark"
+  title="Framer-stagger-children"
+  width="100%"
+  border-radius="4px"
+  height="500px"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+/>
+&nbsp;
+
+> A motion component can automatically animate between different layouts that occur as result of a re-render by setting the layout prop to true.
+> &nbsp;
+
+After doing this, I feel Framer motion code is neat, simplistic, and easy to use. It also provides you some inbuilt APIs to achieve any complex animation.
+
+### How it works
+
+Framer Motion replaces <abbr title="Hypertext Markup Language">HTML</abbr> elements with motion elements. There is a motion element for every <abbr title="Hypertext Markup Language">HTML</abbr> and <abbr title="Scalable Vector Graphics">SVG</abbr> element (e.g., `<motion.div>`). These motion elements hook into Framer Motion and accept additional props, which defines animation behavior. The simplest of these props is animate and is also the one you will be reaching for most often. Any valid value you pass to animate will cause the component to animate to that state upon the mount.
+
+```tsx
+<motion.div
+  animate={{
+    x: "200px",
+  }}
+>
+  Hey there
+</motion.div>
+```
+
+This will prompt the div to slide 200 pixels to the right when loaded. If you want it to animate through a series of states, you can use keyframes with an array of state values.
+
+** Three Important main properties to create any animation are **
+
+**1. initial**: used to define where and how my element at the beginning.
+
+```tsx
+<motion.div
+...
+initial={{
+  opacity: 0
+ }}
+...
+/>
+```
+
+**2. animate**: Where it needs to go and which shape is going to be at the end of the animation.
+
+```tsx
+<motion.div
+...
+animate={{
+  opacity: 1
+ }}
+...
+/>
+```
+
+**3. transition**: use to define how values animate from one state to another.
+
+```tsx
+<motion.div
+...
+transition={{
+  ease: "easeIn",
+  duration: 0.7,
+}}
+...
+/>
+```
+
+### Advantages of Framer Motion
+
+- It’s extremely intuitive, super easy to use, and can be used with React.
+- You can create custom component using farmer in chakra-ui.
+- you can create natural animations based on the properties being animated.
+- It offers more advanced listeners, as well as extends the basic set of event listeners provided by React.
+- It currently has support for hover, tap, focus, pan, and drag gesture detection which is pretty much to get a great animation.
+
+### Resources
+
+- [Framer Motion APIs docs](https://www.framer.com/api/motion/), Framer Motion
+- [Framer Motion with Chakra](https://chakra-ui.com/guides/integrations/with-framer), Chakra UI
+- [Framer Motion for React](https://www.youtube.com/playlist?list=PL4cUxeGkcC9iHDnQfTHEVVceOEBsOf07i), Tutorial on YouTube
+
+### "That's all", Happy coding!!:sunglasses:
+
+<img
+  alt="Notification First State"
+  src={useBaseUrl("img/framer-motion/fun.gif")}
+/>
