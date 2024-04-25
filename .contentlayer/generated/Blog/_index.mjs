@@ -5,8 +5,7 @@ import thingsYouMightNotKnowAboutTsMdx from './things-you-might-not-know-about-t
 import accessibilityMdx from './accessibility.mdx.json' assert { type: 'json' }
 import browserRenderingOptimizationMdx from './browser-rendering-optimization.mdx.json' assert { type: 'json' }
 import editingGitCommitsMdx from './editing-git-commits.mdx.json' assert { type: 'json' }
-import virtualListsMdx from './Virtual-Lists.mdx.json' assert { type: 'json' }
 import linuxCliTipsMdx from './linux-cli-tips.mdx.json' assert { type: 'json' }
 import storybookFeaturesMdx from './storybook-features.mdx.json' assert { type: 'json' }
 
-export const allBlogs = [dynamicFormMdx, thingsYouMightNotKnowAboutTsMdx, accessibilityMdx, browserRenderingOptimizationMdx, editingGitCommitsMdx, virtualListsMdx, linuxCliTipsMdx, storybookFeaturesMdx]
+export const allBlogs = [dynamicFormMdx, thingsYouMightNotKnowAboutTsMdx, accessibilityMdx, browserRenderingOptimizationMdx, editingGitCommitsMdx, linuxCliTipsMdx, storybookFeaturesMdx]
