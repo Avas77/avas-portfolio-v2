@@ -7,12 +7,7 @@ publishedAt: 2022-03-28
 
 In web development, the developer thinks the only thing to worry about is Javascript but CSS also plays a vital role and can be the reason for the chunky user experiences. Having a good fundamental knowledge of CSS can make your app more engaging and smooth.
 
-<img
-  height="400px"
-  width="100%"
-  alt="css-optimization"
-  src={useBaseUrl("img/css-performance-optimization/css-optimization.png")}
-/>
+![css-optimization](/assets//css-performance-optimization/css-optimization.png)
 
 ## Introduction
 
@@ -28,12 +23,7 @@ However, the web performance depends on the CSS properties that we are using for
 
 To understand the CSS functionality and how it may effect UX first, we need to understand how CSS works.
 
-<img
-  height="400px"
-  width="100%"
-  alt="css-parsing-model"
-  src={useBaseUrl("img/css-performance-optimization/css-parsing-model.png")}
-/>
+![css-parsing-model](/assets/css-performance-optimization/css-parsing-model.png)
 
 When a browser displays a document, it must combine document content with its style. Browser used to follow the following stages while this whole process.
 
@@ -57,35 +47,16 @@ When a browser displays a document, it must combine document content with its st
    ```
 
 2. As soon as browser get the HTML it starts parsing it and gives us nodes like `<head>`, `<body>`, etc. and these node makes the `Document Object Model (DOM)`. The DOM of the above HTML snippet will look like this.
-   <img
-     height="400px"
-     width="100%"
-     alt="dom"
-     src={useBaseUrl("img/css-performance-optimization/dom.png")}
-   />
+   ![dom](/assets/css-performance-optimization/dom.png)
 3. The browser then fetches the resources that are linked to the HTML document such as CSS, Javascript. CSS basically comes from `UserAgents`, `stylesheet`, `inline-css`, etc.
 4. As soon as the browser fetched the CSS it starts parsing the CSS and calculate which rules should be applied to which node in DOM, and add style to those nodes. This process is known as `Recalculate Styles` in Dev Tools.
-   <img
-     height="300px"
-     width="100%"
-     alt="recalculate-styles"
-     src={useBaseUrl("img/css-performance-optimization/recalculate-styles.png")}
-   />
+   ![recalculate-styles](/assets/css-performance-optimization/recalculate-styles.png)
+
 5. When the browser is done with the `Recalculate Styles` process we used to get a new tree i.e. `Render Tree`. Render tree looks like the DOM but without any `<head>`, `<scripts>`, etc.
 6. Once the browser knows which rules to apply to an element, it can begin to calculate `Layout`. In Layouting, CSS calculates how much space an element will take and where it will align on the screen. In dev tools, this process is known as `Layout`.
-   <img
-     height="300px"
-     width="100%"
-     alt="layouting"
-     src={useBaseUrl("img/css-performance-optimization/layouting.png")}
-   />
+   ![layouting](/assets//css-performance-optimization/layouting.png)
 7. When the browser finishes `Layout` we will get the properly aligned element in the `Vector` form. Vectors are just shapes. Now browser needs to covert it to `Raster` form. To covert, a vector shape to the raster browser needs to fill every pixel of the element. Conversion of vector to raster is taken place with the help of `Rasterizer` and this process in the dev tools known as `Paint`.
-   <img
-     height="300px"
-     width="100%"
-     alt="Paint"
-     src={useBaseUrl("img/css-performance-optimization/paint.png")}
-   />
+   ![Paint](/assets//css-performance-optimization/paint.png)
 
 After all these steps the browser will render the element on the screen. So, these are basic working of CSS and steps that make a frame.
 
@@ -96,22 +67,14 @@ In the UX world, animation plays a vital role and users expect all the interacti
 Responsive user interfaces are used to follow a frame rate of `60 frames per second (fps)`. It is not always possible to maintain 60fps but to make a better user interface it is mandatory to maintain a high and steady frame rate for all the animations. For `60fps` the browser has `16.7ms` to execute the CSS steps that we mentioned in the above section. So, if we execute the expensive CSS properties then there are higher chances that the browser might lose some frames and result in a `jank`.
 
 In the modern computer that higher speed these `janks` might not be noticeable but with the CPU with the slower speed, it can be noticed easily. Let me show an example.
-
-<img
-  alt="animation-jank"
-  src={useBaseUrl("img/css-performance-optimization/animation-jank.gif")}
-/>
+![animation-jank](/assets//css-performance-optimization/animation-jank.gif)
 
 ```css
 transition: margin-left 300ms ease-in-out;
 ```
 
 In this example, expensive CSS properties have been used for the animation i.e. `margin-left` and we reduced the CPU speed by 6 times. Hence browser does not show frames with the rate of 60fps and it is dropping the frames that result in `jank` .
-
-<img
-  alt="dropping-frames"
-  src={useBaseUrl("img/css-performance-optimization/dropping-frames.png")}
-/>
+![dropping-frames](/assets//css-performance-optimization/dropping-frames.png)
 
 Let's understand why this is happening and how we can optimise it.
 
@@ -120,29 +83,17 @@ Let's understand why this is happening and how we can optimise it.
 To optimise the web performance let's do a quick recap. If we make visual changes then to render it on-screen browser mainly performs `Recalculate styles` , `Layout` , `Paint` , `Composite Layers`, and if the CPU speed is slow then to perform all these processes in just 16.7ms is difficult and browser might drop some frames. So, to optimise we can try to skip some big operations by using the best CSS property. Let's understand how we can skip some operations.
 
 - If we make some visual changes that can effect/change an element's geometry like its `width` , `height` , or `position` with relation to another element like `top` , `left` . Then the browser will have to check all the other elements and `re-flow` the page then effected areas will be `paint` again and painted elements will need to be `composited` back together. In this case, browser is performing all the operations again, this is known as `re-flow` .
-
-  <img
-    alt="css-basic-flow"
-    src={useBaseUrl("img/css-performance-optimization/css-basic-flow.png")}
-  />
+  ![css-basic-flow](/assets/css-performance-optimization/css-basic-flow.png)
 
   `re-flow` can happen due to some CSS properties that causes layout shift like `margin` , `width` , `height` , etc.
 
 - Now, if we make some visual change that will effect/change an element's visual change only means that it only triggers `Paint` . In this case, `re-flow` will not happen and we can optimise our page.
-
-  <img
-    alt="skip-layouts"
-    src={useBaseUrl("img/css-performance-optimization/skip-layout.png")}
-  />
+  ![skip-layouts](/assets//css-performance-optimization/skip-layout.png)
 
   Some paint only CSS properties are `background-color` , `shadow` , etc.
 
 - If we use a CSS property that neither effect `Layout` nor effect `Paint` like `transform` . Then we can skip two big browser operations and we browser will only take care of `Composite Layer` operation.
-
-  <img
-    alt="skip-paint-layout"
-    src={useBaseUrl("img/css-performance-optimization/skip-paint-layout.png")}
-  />
+  ![skip-paint-layout](/assets/css-performance-optimization/skip-paint-layout.png)
 
 Now, it's time to use the knowledge that we have gain and optimise our example that we used above. In the example, we are using `margin-left` property in the animation and we discussed `margin` is a CSS property that can cause `re-flow` .
 
@@ -168,20 +119,13 @@ aside {
 ```
 
 Hence `re-flow` :
-
-<img
-  alt="re-flow"
-  src={useBaseUrl("img/css-performance-optimization/re-flow.png")}
-/>
+![re-flow](/assets//css-performance-optimization/re-flow.png)
 
 In this performance review, we can see the browser is doing `Layout` , `Paint` operations. Now browser has to perform all the operations in `16.7ms` and it might be very difficult to finish all the operations in `16.7ms` hence browser will drop the frames.
 
 Result:
 
-<img
-  alt="animation-jank"
-  src={useBaseUrl("img/css-performance-optimization/animation-jank.gif")}
-/>
+![animation-jank](/assets/css-performance-optimization/animation-jank.gif)
 
 #### Optimisation
 
@@ -209,20 +153,12 @@ To optimise this let's use `transform` property which has a value `translate` by
 ```
 
 Hence `No re-flow` :
-
-<img
-  alt="no-re-flow"
-  src={useBaseUrl("img/css-performance-optimization/no-re-flow.png")}
-/>
+![no-re-flow](/assets//css-performance-optimization/no-re-flow.png)
 
 In this performance review, we can see there is no `Layout` , `Paint` operation happened. Now browser only has to perform two operations in `16.7ms` and it will be a very easy task to perform. Hence we have optimise our web page.
 
 Result:
-
-<img
-  alt="optimised"
-  src={useBaseUrl("img/css-performance-optimization/optimised.gif")}
-/>
+![optimised](/assets/css-performance-optimization/optimised.gif)
 
 So, this is how we can optimise our web performance !!
 
@@ -230,9 +166,4 @@ To see which CSS property triggers which operations we can refer to [this site.]
 
 So, these are the basic fundamentals by which we can optimise our web performance. There are a lot of other methods too. I will be writing more about this, till then happy coding, and don't forget to check the performance of your project !!
 
-<img
-  alt="final"
-  width="100%"
-  height="300px"
-  src={useBaseUrl("img/css-performance-optimization/final.gif")}
-/>
+![final](/assets/css-performance-optimization/final.gif)
