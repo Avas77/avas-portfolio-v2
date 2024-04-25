@@ -9,7 +9,7 @@ const Blogs = () => {
   const blogs = allBlogs.sort((a, b) =>
     compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
   );
-  console.log("Hello", { allBlogs, blogs });
+
   return (
     <section className="mt-14">
       <BlockHeader title="blog" classNames="hidden" />

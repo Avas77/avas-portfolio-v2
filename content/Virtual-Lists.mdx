@@ -1,0 +1,93 @@
+---
+title: Virtual Lists
+summary: "Virtual Lists"
+type: Blog
+publishedAt: 2022-03-28
+---
+
+## Rendering long set of data using virtualized list
+
+Let's imagine a scenario, we have a very long set of data to be rendered
+but rendering the data all at once will require more computation which
+in turn slows down our application and causes problem in the performance of the application.
+
+One practical example for it is, the implementation of notification in the previous iteration of agent-dashboard
+used to render all the notification all at once which used to cause some lag while loading the
+big bulk of data all at once, as shown in the image below.
+
+<img
+  alt="Notification First State"
+  src={useBaseUrl("img/virtual-list/notification-first-state.gif")}
+/>
+
+So implementing react-window/virtual list in our implementation improves the performance of the
+implementation of our notification as shown in the image below.
+
+<img
+  alt="Notification Final State"
+  src={useBaseUrl("img/virtual-list/notification-final-state.gif")}
+/>
+
+### How virtual list works
+
+In normal scenario, when we have a set of data we directly render it to the DOM. But when the set of
+data has thousands of items in it, rendering all the items causes performance degradation.
+
+<img
+  alt="DOM First State"
+  src={useBaseUrl("img/virtual-list/dom-first-state.gif")}
+/>
+
+So basically, virtual list renders only the items that can be seen by the user in the viewport,
+i.e when the data is not in the viewport the item doesn't render at all. So whenever user scrolls
+through the container, the items not in the viewport gets detached from the DOM whereas the item to
+be appeared in the DOM gets attached to the DOM.
+
+<img
+  alt="DOM Final State"
+  src={useBaseUrl("img/virtual-list/dom-final-state.gif")}
+/>
+
+For this to be implemented, the virtual list needs the `height` of the container, what the `height`
+of each item is going to be, and the total number of `items` in the list to be rendered. Which in turn,
+does the required calculation and renders the list nodes accordingly.
+
+Here is a short example of how virtual list is implemented
+
+```tsx
+import React, { useState } from "react";
+import VirtualList from "~/components/VirtualList";
+
+const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]; //can be a big list of data
+
+const renderer = ({
+  index,
+  style,
+}: {
+  index: number;
+  style: React.CSSProperties;
+}) => {
+  return <div {...style}>{data[index]}</div>;
+};
+
+const getItemSize = (index) => {
+  return 30; //height of the item you want to be
+};
+
+function MyApp() {
+  return (
+    <div>
+      <VirtualList
+        renderer={dataRenderer}
+        numberOfItems={data.length}
+        getItemSize={getItemSize}
+      />
+    </div>
+  );
+}
+```
+
+### Dependencies used to achieve the Virtual List
+
+- [react-window](https://github.com/bvaughn/react-window) React window works by only rendering part of a large data set (just enough to fill the viewport). This helps address some common performance bottlenecks:
+- [react-virtualized-auto-sizer](https://github.com/bvaughn/react-virtualized-auto-sizer) High-order component that automatically adjusts the width and height of a single child.

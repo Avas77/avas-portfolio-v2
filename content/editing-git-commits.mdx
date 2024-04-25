@@ -1,0 +1,97 @@
+---
+title: Editing Git Commits
+summary: "Editing Git Commits"
+type: Blog
+publishedAt: 2022-03-28
+---
+
+Imagine you want to go back in time and change your commits, delete them, merge multiple commits etc.
+All this can be achieved using interactive rebase which makes it a powerful tool.
+
+## What is interactive rebase?
+
+It gives an opportunity to alter older individual commits.
+It's like `git commit --amend` on steroids.
+
+Scott Chacon, in his book Pro Git, describes interactive rebasing as follows: <blockquote>Sometimes the thing fixed … cannot be amended to the not-quite perfect commit it fixes, because that commit is buried deeply in a patch series. That is exactly what interactive rebase is for: use it after plenty of [work has been committed], by rearranging and editing commits, and squashing multiple commits into one.</blockquote>
+
+## How do we start
+
+To start an interactive rebase, we need to tell Git which commits to modify and we do this by referencing the commits as shown below.
+
+```
+git rebase -i HEAD~n
+```
+
+- Where `n` is the recent number of commit messages that you want to edit
+
+Lets look at an example.
+
+##### 1. Open commit messages
+
+```
+git rebase -i HEAD~1
+```
+
+<p>This opens a screen with commit message preceded with letter `pick`</p>
+
+<img
+  alt="choose rebase option"
+  src={useBaseUrl("img/edit-commit-msg/pick.png")}
+/>
+<br />
+
+It also shows a list of commands that you would want to use as per your usecase.
+
+<img
+  alt="choose rebase option"
+  src={useBaseUrl("img/edit-commit-msg/cmds.png")}
+/>
+<br />
+
+##### 2. Replace pick with reword
+
+<p>
+  Replace pick with reword for all the commit messages that you want to edit. In
+  this case, we are editing 1 message only.{" "}
+</p>
+
+<img
+  alt="choose rebase option"
+  src={useBaseUrl("img/edit-commit-msg/reword.png")}
+/>
+<br />
+
+##### 3. Editing git commit message
+
+<img
+  alt="Edit git commit"
+  src={useBaseUrl("img/edit-commit-msg/edit-commit.png")}
+/>
+
+<p>
+  After editing commit message, Press <kbd>Ctrl</kbd> + <kbd>O</kbd> &{" "}
+  <kbd>Enter</kbd> then <kbd>Ctrl</kbd> + <kbd>X</kbd> if you are in nano editor
+  or Press <kbd>Esc</kbd> & type <b>:wq</b> if you are in vim editor
+  respectively.
+</p>
+
+##### 4. Verify changes using git log
+
+<img alt="git log" src={useBaseUrl("img/edit-commit-msg/log.png")} />
+
+<p>After editing commit message, push the changes.</p>
+
+### More info
+
+<a href="https://www.youtube.com/watch?v=ElRzTuYln0M&t=219s" target="_blank">
+  https://www.youtube.com/watch?v=ElRzTuYln0M&t=219s
+</a>
+<br />
+
+<a
+  href="https://medium.com/@praveenmuth2/interactive-rebase-the-ultimate-git-superpower-d43b94afbf01#:~:text=Press%20Esc%20%2C%20type%20%3Awq!,Enter%20to%20save%20and%20exit.&text=But%2C%20this%20is%20just%20a,Now%20the%20rebase%20is%20complete"
+  target="_blank"
+>
+  Link
+</a>
