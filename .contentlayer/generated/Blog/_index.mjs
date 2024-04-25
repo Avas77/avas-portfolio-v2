@@ -6,9 +6,7 @@ import accessibilityMdx from './accessibility.mdx.json' assert { type: 'json' }
 import browserRenderingOptimizationMdx from './browser-rendering-optimization.mdx.json' assert { type: 'json' }
 import editingGitCommitsMdx from './editing-git-commits.mdx.json' assert { type: 'json' }
 import virtualListsMdx from './Virtual-Lists.mdx.json' assert { type: 'json' }
-import framerMotionMdx from './framer-motion.mdx.json' assert { type: 'json' }
-import introducingDatepickerMdx from './introducing-datepicker.mdx.json' assert { type: 'json' }
 import linuxCliTipsMdx from './linux-cli-tips.mdx.json' assert { type: 'json' }
 import storybookFeaturesMdx from './storybook-features.mdx.json' assert { type: 'json' }
 
-export const allBlogs = [dynamicFormMdx, thingsYouMightNotKnowAboutTsMdx, accessibilityMdx, browserRenderingOptimizationMdx, editingGitCommitsMdx, virtualListsMdx, framerMotionMdx, introducingDatepickerMdx, linuxCliTipsMdx, storybookFeaturesMdx]
+export const allBlogs = [dynamicFormMdx, thingsYouMightNotKnowAboutTsMdx, accessibilityMdx, browserRenderingOptimizationMdx, editingGitCommitsMdx, virtualListsMdx, linuxCliTipsMdx, storybookFeaturesMdx]
