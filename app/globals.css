@@ -8,7 +8,8 @@
 .prose h4 {
   color: #fff;
 }
-.prose code {
+.prose code,
+.prose blockquote {
   color: #fff;
 }
 
