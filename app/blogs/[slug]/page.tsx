@@ -1,5 +1,6 @@
 import { allBlogs } from "@/.contentlayer/generated";
 import { Mdx } from "@/components/Mdx";
+import { siteMetadata } from "@/constants/siteMetadata";
 import { formatDate, parseISO } from "date-fns";
 import React from "react";
 
@@ -9,7 +10,36 @@ export const generateStaticParams = async () =>
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   const blog = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug);
   if (!blog) throw new Error(`Post not found for slug: ${params.slug}`);
-  return { title: blog.title };
+
+  const ogImage = `${siteMetadata.siteUrl}/og?title=${blog.title}`;
+  return {
+    title: blog.title,
+    description: blog.summary,
+    openGraph: {
+      title: blog.title,
+      description: blog.summary,
+      siteName: siteMetadata.siteUrl,
+      locale: "en_US",
+      type: "article",
+      publishedTime: blog.publishedAt,
+      url: "./",
+      authors: siteMetadata.author,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: blog.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.summary,
+      images: [ogImage],
+    },
+  };
 };
 
 const BlogLayout = ({ params }: { params: { slug: string } }) => {
