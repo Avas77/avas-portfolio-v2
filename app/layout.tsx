@@ -1,6 +1,7 @@
 import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
+import Head from "./head";
 
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head />
       <meta
         name="google-site-verification"
         content="nuGI4rjLYF7lGE8_K9xP3CoCEqbScYSeE02f3F_VzJ0"
