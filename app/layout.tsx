@@ -7,8 +7,8 @@ const firaCode = Fira_Code({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Full Stack Developer Portfolio",
-    default: "Avas Bajracharya - Full Stack Developer Portfolio",
+    template: "%s - Frontend Developer Portfolio",
+    default: "Avas Bajracharya - Frontend Developer Portfolio",
   },
   metadataBase: new URL("https://avasbajracharya.com.np/"),
   openGraph: {
