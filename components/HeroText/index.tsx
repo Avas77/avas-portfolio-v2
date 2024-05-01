@@ -8,7 +8,7 @@ const HeroText = () => {
       <h1 className="font-semibold text-[32px]">
         Crafting seamless digital experiences - Meet Avas, your&nbsp;
         <strong className="text-primary font-semibold">
-          full stack web development expert
+          frontend development expert
         </strong>
       </h1>
       <p className="mt-[25px] sm:mt-8 text-gray">

@@ -15,7 +15,7 @@ const Footer = ({ classNames }: { classNames?: string }) => {
             <Logo />
             <p className="text-gray">avasbajracharya9@gmail.com</p>
           </div>
-          <p>full-stack developer</p>
+          <p>Web designer and frontend developer</p>
         </div>
         <div className="flex flex-col gap-3">
           <h5 className="font-bold text-2xl">Media</h5>
