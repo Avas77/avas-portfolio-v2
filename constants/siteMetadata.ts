@@ -3,7 +3,7 @@ export const siteMetadata = {
   author: "Avas Bajracharya",
   siteUrl: "https://avasbajracharya.com.np/",
   description:
-    "Avas Bajracharya - Frontend developer passionate about creating and sharing things on internet",
+    "Explore the impressive portfolio of Mr. Avas Bajracharya, showcasing his expertise as a seasoned frontend developer. Dive into a collection of innovative projects, demonstrating proficiency in front-end and back-end development, along with a keen eye for design and functionality. Discover the fusion of creativity and technical prowess evident in each project, reflecting Mr. Bajracharya's dedication to delivering high-quality solutions in the digital realm.",
   keywords: [
     `Avas Bajracharya, Avas, Bajracharya, avasbajracharya,  avasbajracharya.com.np`,
   ],
