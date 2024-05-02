@@ -2,6 +2,7 @@ import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
 import Head from "./head";
+import { siteMetadata } from "@/constants/siteMetadata";
 
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
@@ -10,10 +11,22 @@ export const metadata: Metadata = {
     template: "%s - Frontend Developer Portfolio",
     default: "Avas Bajracharya - Frontend Developer Portfolio",
   },
+  description: siteMetadata.description,
   metadataBase: new URL("https://avasbajracharya.com.np/"),
   openGraph: {
     url: "https://avasbajracharya.com.np/",
     type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
