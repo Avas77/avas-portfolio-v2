@@ -47,7 +47,7 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
   if (!blog) throw new Error(`Post not found for slug: ${params.slug}`);
 
   return (
-    <article className="py-8 pb-20 prose text-white mx-auto max-w-none mt-14">
+    <article className="py-8 pb-20 prose text-white mx-auto mt-14 max-w-3xl">
       <div className="mb-8 text-center">
         <time
           dateTime={blog.publishedAt}
@@ -55,7 +55,9 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
         >
           {formatDate(parseISO(blog.publishedAt), "LLLL d, yyyy")}
         </time>
-        <h1 className="text-3xl font-bold">{blog.title}</h1>
+        <h1 className="text-3xl font-bold text-white text-[2.5rem] mb-16">
+          {blog.title}
+        </h1>
       </div>
       <Mdx code={blog.body.code} />
     </article>
