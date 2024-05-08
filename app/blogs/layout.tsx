@@ -1,5 +1,12 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Space_Grotesk } from "next/font/google";
+
+const space_grotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space-grotesk",
+});
 
 export default function BlogLayout({
   children, // will be a page or nested layout
@@ -10,7 +17,7 @@ export default function BlogLayout({
     <>
       <section className="container">
         <Header />
-        {children}
+        <section className={space_grotesk.className}>{children}</section>
       </section>
       <Footer />
     </>

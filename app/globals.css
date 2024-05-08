@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.prose h1,
 .prose h2,
 .prose h3,
 .prose h4 {
-  color: #fff;
+  color: #36a3ff;
 }
+
+.prose strong {
+  color: #a9adc1;
+}
+
+.prose time {
+  font-size: 1rem;
+}
+
+.prose p {
+  font-size: 1.125rem;
+}
+
 .prose code,
 .prose blockquote {
   color: #fff;
