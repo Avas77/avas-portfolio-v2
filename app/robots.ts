@@ -1,3 +1,4 @@
+import { siteMetadata } from "@/constants/siteMetadata";
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -8,5 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       disallow: "/private/",
     },
     sitemap: "https://avasbajracharya.com.np/sitemap.xml",
+    host: siteMetadata.siteUrl,
   };
 }
