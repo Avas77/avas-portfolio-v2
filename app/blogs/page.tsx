@@ -11,7 +11,7 @@ const Blogs = () => {
   );
 
   return (
-    <section className="mt-14">
+    <section className="mt-14 max-w-3xl mx-auto">
       <BlockHeader title="blog" classNames="hidden" />
       <section className="mt-4 mb-14 flex flex-col gap-4">
         {blogs.map((blog) => (
