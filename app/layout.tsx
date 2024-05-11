@@ -14,7 +14,11 @@ export const metadata: Metadata = {
   description: siteMetadata.description,
   metadataBase: new URL("https://avasbajracharya.com.np/"),
   openGraph: {
-    url: "https://avasbajracharya.com.np/",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    url: "./",
+    siteName: siteMetadata.title,
+    locale: "en_US",
     type: "website",
   },
   robots: {
