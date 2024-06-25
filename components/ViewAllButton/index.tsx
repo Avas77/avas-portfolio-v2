@@ -8,7 +8,7 @@ interface IViewAllButtonProps {
 
 const ViewAllButton = ({ classNames }: IViewAllButtonProps) => {
   return (
-    <LinkButton url={"/projects"} classNames={`self-center ${classNames}`}>
+    <LinkButton url={"/works"} classNames={`self-center ${classNames}`}>
       <Image
         src={"/assets/view-all.svg"}
         alt="view all btn"
