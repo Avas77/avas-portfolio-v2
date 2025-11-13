@@ -29,8 +29,10 @@ const HeroImage = () => {
       </div>
       <div className="flex flex-wrap items-center gap-2 sm:gap-[10px] border border-gray px-2 py-2 w-auto sm:w-11/12">
         <div className="bg-primary w-4 h-4" aria-hidden="true"></div>
-        <span className="text-gray">Currently working on </span>
-        <strong className="font-semibold">Portfolio</strong>
+        <span className="text-gray">Currently working on</span>
+        <strong className="font-semibold">
+          Predictive Real Estate Investment Model
+        </strong>
       </div>
     </section>
   );

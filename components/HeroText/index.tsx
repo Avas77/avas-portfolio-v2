@@ -6,14 +6,15 @@ const HeroText = () => {
   return (
     <section className="basis-full px-4 sm:px-6 xl:px-0">
       <h1 className="font-semibold text-[32px]">
-        Crafting seamless digital experiences - Meet Avas, your&nbsp;
+        Turning data into actionable insights — Meet Avas&nbsp;
         <strong className="text-primary font-semibold">
-          frontend development expert
+          your Data Analytics & Engineering enthusiast.
         </strong>
       </h1>
       <p className="mt-[25px] sm:mt-8 text-gray">
-        I make websites that load quickly and work well on all devices. I focus
-        on making them easy for people to use and enjoy
+        I help organizations make data-driven decisions by building scalable
+        pipelines, uncovering insights, and developing AI models that turn data
+        into measurable business value.
       </p>
       <LinkButton url={"/contacts"}>
         <PrimaryButton
