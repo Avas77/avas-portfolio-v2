@@ -21,7 +21,7 @@ const ProjectBox = ({
         alt={`${name} Website`}
         width={330}
         height={201}
-        className="w-full"
+        className="w-full h-[201px]"
       />
       <section className="border border-gray p-2">
         <p className="text-gray">{tech}</p>

@@ -56,12 +56,33 @@ export const clientApps = [
 export const personalApps = [
   {
     id: 1,
-    name: "Nike Redesigned",
-    tech: "Next.js Typescript Tailwind CSS Node.js Express.js MongoDB",
-    imgPath: "/assets/project_img/nike.png",
-    description: "Full stack website for Nike shoes page redesigned",
-    url: "https://nike-project-plum.vercel.app/",
-    github: "https://github.com/Avas77/nike-project",
+    name: "Building a Real Estate Forecasting Engine: The Rent vs. Buy Problem",
+    tech: "pandas streamlit scikit-learn",
+    imgPath: "/assets/project_img/real-estate.png",
+    description:
+      "A data-driven project that analyzes and forecasts rent vs. buy decisions using real estate market data. Built predictive models to estimate long-term costs, affordability trends, and financial outcomes for smarter housing choices.",
+    url: "https://rentvsbuyinsights.streamlit.app/",
+    github: "https://github.com/Avas77/zillow-property-research",
+  },
+  {
+    id: 2,
+    name: "Behind the Trends: YouTube Engagement & Pipeline Analysis",
+    tech: "pandas streamlit matplotlib",
+    imgPath: "/assets/project_img/youtube.png",
+    description:
+      "A full-cycle data pipeline project that ingests daily trending videos from the YouTube API, stores and transforms the data in PostgreSQL/Pandas, then visualizes engagement patterns and time-based trends via an interactive Streamlit dashboard.",
+    url: "https://avas-youtube-analysis.streamlit.app/",
+    github: "https://github.com/Avas77/youtube-trend-analysis",
+  },
+  {
+    id: 3,
+    name: "Normalized Airbnb Listings & Revenue Insights",
+    tech: "SQL PowerBI pandas",
+    imgPath: "/assets/project_img/airbnb.png",
+    description:
+      "A full end‑to‑end analytics project that models and normalizes listing data from Inside Airbnb, builds a relational PostgreSQL database, runs business‑driven SQL analyses (e.g., neighborhood revenue, host activity) and surfaces findings in an interactive Power BI dashboard to guide hosting and investment strategy.",
+    url: "https://github.com/Avas77/airbnb-analysis",
+    github: "https://github.com/Avas77/airbnb-analysis",
   },
   {
     id: 2,
@@ -82,25 +103,5 @@ export const personalApps = [
       "This is my V1 portfolio that I showcased to many companies and got job as a fresher",
     url: "https://avas-portfolio.web.app/",
     github: "https://github.com/Avas77/portfolio",
-  },
-  {
-    id: 4,
-    name: "Burger Builder",
-    tech: "React.js CSS Firebase Github",
-    imgPath: "/assets/project_img/burger.png",
-    description:
-      "Build your own type of burger using your own recipe. Add or remove ingredients as you like to make your burger tasty. It has User-friendly UI. Finally, place an order for your burger.",
-    url: "https://burger-builder-32682.web.app/",
-    github: "https://github.com/Avas77/BurgerBuilder",
-  },
-  {
-    id: 5,
-    name: "Voice Powered Expense Tracker",
-    tech: "React.js CSS Speechly Github",
-    imgPath: "/assets/project_img/expense-tracker.png",
-    description:
-      "Web Application that helps you keep track of your income and expenses to make sure you dont overspend your budget. It has the added functionality of adding incomes and expense data with your voice so you dont have to type every word.",
-    url: "https://avas-expense-tracker-2022.netlify.app/",
-    github: "https://github.com/Avas77/expense-tracker",
   },
 ];

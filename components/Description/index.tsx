@@ -22,7 +22,9 @@ const Description = ({ classNames, showButton }: IDescriptionProps) => {
       <p className="flex flex-col gap-4 text-gray lg:pr-16 text-justify md:text-left">
         <span>Hello, i&apos;m Avas!</span>
         <span>
-          I help businesses unlock the power of their data. From building
+          I started my career as a software engineer, building responsive
+          applications and modern web experiences. Fascinated by the power of
+          data I help businesses unlock the power of their data. From building
           efficient data pipelines to developing predictive models, I focus on
           transforming data into actionable insights that drive measurable
           impact. Based in Johnson City, Tennessee, I&apos;m passionate about
