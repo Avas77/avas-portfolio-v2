@@ -1,5 +1,5 @@
 import { Blog } from "@/.contentlayer/generated";
-import { formatDate, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 import React from "react";
 
 const BlogCard = (blog: Blog) => {
@@ -9,7 +9,7 @@ const BlogCard = (blog: Blog) => {
         dateTime={blog.publishedAt}
         className="text-base font-medium text-gray"
       >
-        {formatDate(parseISO(blog.publishedAt), "LLLL d, yyyy")}
+        {format(blog.publishedAt, "LLLL d, yyyy")}
       </time>
       <h3 className="text-2xl font-bold">{blog.title}</h3>
       <p className="text-gray text-justify md:text-left">{blog.summary}</p>

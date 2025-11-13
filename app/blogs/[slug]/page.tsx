@@ -1,7 +1,7 @@
 import { allBlogs } from "@/.contentlayer/generated";
 import { Mdx } from "@/components/Mdx";
 import { siteMetadata } from "@/constants/siteMetadata";
-import { formatDate, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 import React from "react";
 
 export const generateStaticParams = async () =>
@@ -53,7 +53,7 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
           dateTime={blog.publishedAt}
           className="mb-1 text-xs text-gray-600"
         >
-          {formatDate(parseISO(blog.publishedAt), "LLLL d, yyyy")}
+          {format(blog.publishedAt, "LLLL d, yyyy")}
         </time>
         <h1 className="leading-10 sm:leading-none sm:text-3xl font-bold text-white text-[2rem] mb-16">
           {blog.title}
