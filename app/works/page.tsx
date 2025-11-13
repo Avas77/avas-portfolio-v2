@@ -10,12 +10,12 @@ const Works = () => {
       <PageHeader title="projects" description="List of my projects" />
       <section className="mt-[68px] mb-[187px] flex flex-col gap-[81px]">
         <section>
-          <BlockHeader title="client-apps" classNames="hidden" />
-          <ProjectsBoxList projects={clientApps} />
-        </section>
-        <section>
           <BlockHeader title="personal-apps" classNames="hidden" />
           <ProjectsBoxList projects={personalApps} />
+        </section>
+        <section>
+          <BlockHeader title="client-apps" classNames="hidden" />
+          <ProjectsBoxList projects={clientApps} />
         </section>
       </section>
     </section>
