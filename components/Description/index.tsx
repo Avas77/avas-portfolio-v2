@@ -19,19 +19,22 @@ const Description = ({ classNames, showButton }: IDescriptionProps) => {
   );
   return (
     <div className={classNames}>
-      <p className="flex flex-col gap-7 text-gray lg:pr-16 text-justify md:text-left">
+      <p className="flex flex-col gap-4 text-gray lg:pr-16 text-justify md:text-left">
         <span>Hello, i&apos;m Avas!</span>
         <span>
-          I&apos;m a self-taught frontend developer based in Kathmandu, Nepal. I
-          can develop responsive websites and web applications from scratch and
-          raise them into modern user-friendly web experiences.
+          I help businesses unlock the power of their data. From building
+          efficient data pipelines to developing predictive models, I focus on
+          transforming data into actionable insights that drive measurable
+          impact. Based in Johnson City, Tennessee, I&apos;m passionate about
+          continuous learning and leveraging modern data technologies to solve
+          complex challenges.
         </span>
         <span>
-          Turning creativity and skills into awesome websites is what I love
-          doing most. It&apos;s been my passion since day one in this exciting
-          field. With a track record of empowering clients to establish their
-          online presence, I&apos;m committed to staying ahead of the curve by
-          continually embracing the latest technologies and frameworks.
+          I thrive at the intersection of data and innovation — designing
+          solutions that not only reveal what&apos;s happening, but also predict
+          what&apos;s next. By continuously learning emerging technologies and
+          refining my technical skills, I aim to help organizations make
+          smarter, faster, and evidence-based decisions.
         </span>
       </p>
       {showButton ? (
