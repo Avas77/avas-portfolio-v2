@@ -5,7 +5,8 @@ import browserRenderingOptimizationMdx from './browser-rendering-optimization.md
 import dynamicFormMdx from './dynamic-form.mdx.json' assert { type: 'json' }
 import editingGitCommitsMdx from './editing-git-commits.mdx.json' assert { type: 'json' }
 import linuxCliTipsMdx from './linux-cli-tips.mdx.json' assert { type: 'json' }
+import longestConsecutiveSequenceMdx from './longest-consecutive-sequence.mdx.json' assert { type: 'json' }
 import storybookFeaturesMdx from './storybook-features.mdx.json' assert { type: 'json' }
 import thingsYouMightNotKnowAboutTsMdx from './things-you-might-not-know-about-ts.mdx.json' assert { type: 'json' }
 
-export const allBlogs = [accessibilityMdx, browserRenderingOptimizationMdx, dynamicFormMdx, editingGitCommitsMdx, linuxCliTipsMdx, storybookFeaturesMdx, thingsYouMightNotKnowAboutTsMdx]
+export const allBlogs = [accessibilityMdx, browserRenderingOptimizationMdx, dynamicFormMdx, editingGitCommitsMdx, linuxCliTipsMdx, longestConsecutiveSequenceMdx, storybookFeaturesMdx, thingsYouMightNotKnowAboutTsMdx]
