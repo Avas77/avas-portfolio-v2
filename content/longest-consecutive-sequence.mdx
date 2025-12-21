@@ -1,0 +1,178 @@
+---
+title: Longest Consecutive Sequence — From Brute Force to Insight
+summary: "A learning-focused walkthrough of the Longest Consecutive Sequence problem, showing how algorithmic optimizations reduce time complexity."
+type: Blog
+publishedAt: 2025-01-20
+---
+
+## Introduction
+
+I worked on the Longest Consecutive Sequence LeetCode problem for almost an entire day, and I found it genuinely interesting. I couldn’t solve it immediately and had to rely on hints from LeetCode discussions and online explanations. What stood out to me wasn’t just the final solution, but _why_ it works so well.
+
+This post documents my learning journey — not the illusion of solving the problem instantly.
+
+---
+
+## Problem Statement
+
+Given an unsorted array of integers, return the length of the longest sequence of consecutive numbers.
+
+Important note:  
+The problem only asks for the length, not the sequence itself.
+
+---
+
+## Brute Force Approach — My First Attempt
+
+### Thought Process
+
+My initial idea closely followed the problem statement:
+
+- For each number in the array, try to build a consecutive sequence.
+- Keep extending the sequence by checking whether the next number exists.
+- Track the maximum length encountered.
+
+Since only the length was required, this approach felt natural.
+
+---
+
+### Approach
+
+1. Initialize a variable to track the longest sequence length.
+2. Loop through each number in the array.
+3. For each number:
+   - Start counting from that number.
+   - Check if the next consecutive number exists.
+   - Stop when the sequence breaks.
+4. Update the longest length.
+
+To make lookups efficient, I converted the array into a set before running the nested loops.
+
+---
+
+### Brute Force Code
+
+```python
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        res = 0
+        store = set(nums)
+
+        for num in nums:
+            curr_longest, curr = 0, num
+            while curr in store:
+                curr_longest += 1
+                curr += 1
+            res = max(res, curr_longest)
+        return res
+```
+
+## Complexity Analysis (Brute Force)
+
+- Time Complexity: `O(n²)`
+  Each number may repeatedly scan forward through the sequence.
+
+- Space Complexity: `O(n)`
+  Due to the hash set used for fast lookup.
+
+---
+
+## Identifying the Bottleneck
+
+Consider this input array:
+
+```
+[2, 20, 4, 10, 3, 4, 5]
+```
+
+Using the Brute Force approach, the algorithm performs redundant checks:
+
+1. Starting from 2: We find the sequence `2 → 3 → 4 → 5` (Length: 4)
+2. Later, starting from 3: We again find `3 → 4 → 5` (Length: 3)
+3. Then from 4: We find `4 → 5` (Length: 2)
+
+We are recomputing sequences that are already part of a larger sequence. This redundancy is
+what pushes the time complexity to O(n²), as every element in a long sequence initiates its own
+full scan.
+
+This led me to an important question:
+
+> How can I ensure that each consecutive sequence is processed only once?
+
+---
+
+## Optimal Approach — The Key Insight
+
+The core idea behind the optimized solution is simple:
+
+> A number should only start a sequence if it is the beginning of that sequence.
+
+A number num is the start only if:
+```
+(num - 1) is NOT in the set
+```
+If (num - 1) exists, then num is already part of a sequence that started earlier.
+
+---
+
+## Optimized Strategy
+
+- Convert the array into a set.
+- Loop through each number in the set.
+- Only start counting if `(num - 1)` is not present.
+- Expand forward to count the full sequence.
+- Update the longest length.
+
+This guarantees that each number is visited at most once.
+
+---
+### 🔍 Visual: Optimized Sequence Expansion
+
+By checking `if (num - 1) not in nums`, we ensure we only begin the expansion from the absolute start of a sequence.
+
+```text
+Start at 2 → [2] → [3] → [4] → [5]  (Full sequence explored)
+Skip 3     ❌ (because 2 exists)
+Skip 4     ❌ (because 3 exists)
+Skip 5     ❌ (because 4 exists)
+```
+Each sequence is explored once.
+
+---
+
+## Optimal Code
+
+```python
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        nums = set(nums)
+        longest = 0
+
+        for num in nums:
+            if (num - 1) not in nums:
+                curr_length = 1
+                while (num + curr_length) in nums:
+                    curr_length += 1
+                longest = max(longest, curr_length)
+        return longest
+
+```
+
+### Complexity
+
+- **Time Complexity:** O(n)
+  Each number is processed only once (the `while` loop only runs for the actual start of a sequence, meaning each element is visited at most twice).
+- **Space Complexity:** O(n)
+  Necessary for storing the array elements in a hash set for constant-time lookups.
+
+---
+
+### Final Reflection
+
+This problem taught me an important engineering lesson:
+
+> **Optimization isn’t about writing clever code — it’s about eliminating unnecessary work.**
+
+I didn’t solve this problem immediately. In fact, I struggled with it for a while. But by analyzing why my brute force solution was inefficient, I learned how a simple condition `(num - 1 not in set)` can completely change the performance of an algorithm.
+
+This shift — from brute force to insight — is what makes algorithmic problem-solving valuable beyond just LeetCode.
