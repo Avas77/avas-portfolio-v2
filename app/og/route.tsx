@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/og";
+import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 
 export const runtime = "edge";
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
       (
         <div
           style={{
-            height: "100%",
+            // height: "100%",
             width: "100%",
             display: "flex",
             flexDirection: "column",

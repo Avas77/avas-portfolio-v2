@@ -9,7 +9,7 @@ import React from "react";
 export const metadata: Metadata = {
   title: "Contacts",
   description:
-    "Connect with Avas Bajracharya, a skilled frontend developer, through the contacts page of his portfolio. Reach out for inquiries, collaborations, or project discussions. Whether you're seeking frontend development services or simply want to explore potential opportunities, this page provides a direct line of communication. Start a conversation today and take the next step towards bringing your digital vision to life.",
+    "Get in touch with a Data Engineer specializing in analytics, SQL, Python, and scalable data engineering projects.",
 };
 
 const Contactslayout = ({
