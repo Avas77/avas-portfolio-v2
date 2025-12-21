@@ -8,7 +8,7 @@ import React from "react";
 export const metadata: Metadata = {
   title: "Works",
   description:
-    "Explore a curated selection of projects showcasing Avas Bajracharya's expertise in frontend development. Discover innovative web applications and dynamic websites crafted with precision and creativity. Dive into the world of HTML, CSS, JavaScript, and frontend frameworks, and witness the fusion of design and functionality in each project. Whether you seek inspiration or collaboration, this collection exemplifies a dedication to delivering exceptional digital experiences.",
+    "Data Engineer specializing in analytics, scalable data pipelines, SQL, Python, and end-to-end data engineering projects.",
 };
 
 const WorksLayout = ({

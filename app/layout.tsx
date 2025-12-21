@@ -8,8 +8,8 @@ const firaCode = Fira_Code({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Frontend Developer Portfolio",
-    default: "Avas Bajracharya - Frontend Developer Portfolio",
+    template: "%s - Data Engineer, Science & Analytics Focused",
+    default: "Avas Bajracharya - Data Engineer, Science & Analytics Focused",
   },
   description: siteMetadata.description,
   metadataBase: new URL("https://avasbajracharya.com.np/"),
