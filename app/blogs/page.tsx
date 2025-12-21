@@ -6,9 +6,11 @@ import BlogCard from "@/components/BlogCard";
 import Link from "next/link";
 
 const Blogs = () => {
-  const blogs = allBlogs.sort((a, b) =>
-    compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
-  );
+  const blogs = allBlogs
+    .filter((blog) => !blog.draft)
+    .sort((a, b) =>
+      compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
+    );
 
   return (
     <section className="mt-14 max-w-3xl mx-auto px-4 xl:px-0">
