@@ -9,7 +9,7 @@ import React from "react";
 export const metadata: Metadata = {
   title: "Contacts",
   description:
-    "Get in touch with a Data Engineer specializing in analytics, SQL, Python, and scalable data engineering projects.",
+    "Get in touch with a Software Engineer specializing in data analytics, AI/ML, Python, SQL, and scalable applications & data pipelines",
 };
 
 const Contactslayout = ({
