@@ -31,6 +31,8 @@
 
 @layer components {
   .skillBox {
-    @apply lg:[&:nth-child(4)]:col-start-3 lg:[&:nth-child(4)]:col-end-4 lg:[&:nth-child(5)]:col-start-2 lg:[&:nth-child(5)]:col-end-3 lg:[&:nth-child(5)]:row-start-2 lg:[&:nth-child(5)]:row-end-3 lg:[&:nth-child(5)]:mt-[95px];
+    @apply lg:[&:nth-child(5)]:mt-[50px];
+    @apply lg:[&:nth-child(4)]:mt-[50px];
+    @apply lg:[&:nth-child(6)]:mt-[100px];
   }
 }

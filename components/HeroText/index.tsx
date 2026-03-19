@@ -6,15 +6,14 @@ const HeroText = () => {
   return (
     <section className="basis-full px-4 sm:px-6 xl:px-0">
       <h1 className="font-semibold text-[32px]">
-        Turning data into actionable insights — Meet Avas&nbsp;
+        Building scalable software & driving business value with data — Meet Avas&nbsp;
         <strong className="text-primary font-semibold">
-          your Data Analytics & Engineering enthusiast.
+          your Software Engineer with a focus on Data & Analytics.
         </strong>
       </h1>
       <p className="mt-[25px] sm:mt-8 text-gray">
-        I help organizations make data-driven decisions by building scalable
-        pipelines, uncovering insights, and developing AI models that turn data
-        into measurable business value.
+        I help organizations solve real-world problems by developing scalable applications, building robust data 
+        pipelines, uncovering insights, and creating AI/ML solutions that drive smarter decision-making.
       </p>
       <LinkButton url={"/contacts"}>
         <PrimaryButton

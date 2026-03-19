@@ -15,5 +15,6 @@
     "flattenedPath": "es2022"
   },
   "type": "Blog",
-  "slug": "es2022"
+  "slug": "es2022",
+  "draft": false
 }
