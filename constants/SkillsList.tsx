@@ -1,25 +1,30 @@
 export const skillsList = [
   {
     skillGroup: "Languages",
-    skills: "Python SQL R Javascript Typescript Java",
+    skills: "Python SQL JavaScript TypeScript Java R",
   },
   {
-    skillGroup: "Tools",
+    skillGroup: "Databases & Storage",
+    skills: "PostgreSQL MySQL MongoDB SQLite",
+  },
+  {
+    skillGroup: "Tools & Platforms",
     skills:
-      "PowerBI Tableau Streamlit AWS(S3, EC2) Linux Git Github Figma Docker Node.js",
+      "Git GitHub Docker AWS (S3 EC2 Lambda) Linux Power BI Tableau Streamlit Airflow",
   },
-  {
-    skillGroup: "Databases",
-    skills: "MySql PostgreSQL MongoDB SQLite",
-  },
-  {
-    skillGroup: "Specializations",
+    {
+    skillGroup: "Data & Engineering",
     skills:
-      "Data Wrangling Exploratory Data Analysis(EDA) ETL/Data Pipelines Data Warehousing Relational Schema Design Predictive Modeling Machine Learning NLP",
+      "ETL Pipelines Data Modeling Data Warehousing Data Cleaning Feature Engineering API Development System Design",
   },
   {
-    skillGroup: "Libraries",
+    skillGroup: "Analytics & AI/ML",
     skills:
-      "pandas matplotlib seaborn scikit-learn Tensorflow Tailwind CSS React.js Next.js",
+      "Exploratory Data Analysis (EDA) Statistical Analysis Predictive Modeling Machine Learning NLP Model Evaluation",
+  },
+  {
+    skillGroup: "Frameworks & Libraries",
+    skills:
+      "React.js Next.js Node.js Express.js pandas NumPy scikit-learn TensorFlow PyTorch",
   },
 ];

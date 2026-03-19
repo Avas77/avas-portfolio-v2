@@ -56,6 +56,26 @@ export const clientApps = [
 export const personalApps = [
   {
     id: 1,
+    name: "Retail Profitability & Discount Optimization",
+    tech: "Python, pandas, NumPy, Matplotlib, Seaborn, Statsmodels, Power BI",
+    imgPath: "/assets/project_img/retail-sales-dashboard.png",
+    description:
+      "Analyzed ~10,000 retail transactions to identify profitability challenges from aggressive discounting. Built statistical models, visualizations, and dashboards to uncover loss-making transactions, discount thresholds, and category-level performance.",
+    url: "https://app.powerbi.com/view?r=eyJrIjoiZjYwNDU0ZjYtYzA2ZS00OGUzLTgxZDMtMTUyYzIwYWM3YjdjIiwidCI6Ijk2MjQ0MWQ1LTUwNTUtNDM0OS1iYWQzLWJhZWM0M2MzZDc0MSIsImMiOjN9",
+    github: "https://github.com/Avas77/retail-sales-analysis",
+  },
+  {
+    id: 2,
+    name: "Probabilistic FIFA World Cup Outcome Modeling (2026)",
+    tech: "Python, pandas, NumPy, scikit-learn, Statsmodels, Matplotlib, Seaborn Tableau",
+    imgPath: "/assets/project_img/soccer-dashboard.jpg",
+    description:
+      "Built an end-to-end pipeline using historical match data to estimate FIFA World Cup outcomes probabilistically. Developed interpretable logistic regression models, time-aware features, and Monte Carlo simulations (10,000+ runs) to quantify uncertainty and generate actionable tournament insights.",
+    url: "",
+    github: "https://github.com/Avas77/worldcup-prediction",
+  },
+  {
+    id: 3,
     name: "Building a Real Estate Forecasting Engine: The Rent vs. Buy Problem",
     tech: "pandas streamlit scikit-learn",
     imgPath: "/assets/project_img/real-estate.png",
@@ -65,7 +85,7 @@ export const personalApps = [
     github: "https://github.com/Avas77/zillow-property-research",
   },
   {
-    id: 2,
+    id: 4,
     name: "Behind the Trends: YouTube Engagement & Pipeline Analysis",
     tech: "pandas streamlit matplotlib",
     imgPath: "/assets/project_img/youtube.png",
@@ -75,7 +95,7 @@ export const personalApps = [
     github: "https://github.com/Avas77/youtube-trend-analysis",
   },
   {
-    id: 3,
+    id: 5,
     name: "Normalized Airbnb Listings & Revenue Insights",
     tech: "SQL PowerBI pandas",
     imgPath: "/assets/project_img/airbnb.png",
@@ -85,7 +105,7 @@ export const personalApps = [
     github: "https://github.com/Avas77/airbnb-analysis",
   },
   {
-    id: 2,
+    id: 6,
     name: "Covid - 19 Info and Tracker Application",
     tech: "React.js Material UI Github",
     imgPath: "/assets/project_img/covid.png",
@@ -95,7 +115,7 @@ export const personalApps = [
     github: "https://github.com/robina-bajracharya/fight-covid",
   },
   {
-    id: 3,
+    id: 7,
     name: "Avas Portfolio V1",
     tech: "React.js Material UI Sass",
     imgPath: "/assets/project_img/portfolio.png",
