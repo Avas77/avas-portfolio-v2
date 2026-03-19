@@ -3,7 +3,7 @@ export const siteMetadata = {
   author: "Avas Bajracharya",
   siteUrl: "https://avasbajracharya.com.np",
   description:
-    "Data Engineer specializing in analytics, scalable data pipelines, SQL, Python, and end-to-end data engineering projects.",
+    "Software Engineer specializing in data analytics, AI/ML, scalable applications, data pipelines, Python, SQL, and business-focused solutions",
   keywords: [
     `Avas Bajracharya, Avas, Bajracharya, avasbajracharya,  avasbajracharya.com.np`,
   ],
