@@ -2,11 +2,14 @@
 
 import accessibilityMdx from './accessibility.mdx.json' assert { type: 'json' }
 import browserRenderingOptimizationMdx from './browser-rendering-optimization.mdx.json' assert { type: 'json' }
+import designingTheArchitectureMdx from './designing-the-architecture.mdx.json' assert { type: 'json' }
 import dynamicFormMdx from './dynamic-form.mdx.json' assert { type: 'json' }
 import editingGitCommitsMdx from './editing-git-commits.mdx.json' assert { type: 'json' }
+import fromRawDataPart_1Mdx from './from-raw-data-part-1.mdx.json' assert { type: 'json' }
 import linuxCliTipsMdx from './linux-cli-tips.mdx.json' assert { type: 'json' }
 import longestConsecutiveSequenceMdx from './longest-consecutive-sequence.mdx.json' assert { type: 'json' }
 import storybookFeaturesMdx from './storybook-features.mdx.json' assert { type: 'json' }
 import thingsYouMightNotKnowAboutTsMdx from './things-you-might-not-know-about-ts.mdx.json' assert { type: 'json' }
+import buildingModernAnalyticsMdx from './building-modern-analytics.mdx.json' assert { type: 'json' }
 
-export const allBlogs = [accessibilityMdx, browserRenderingOptimizationMdx, dynamicFormMdx, editingGitCommitsMdx, linuxCliTipsMdx, longestConsecutiveSequenceMdx, storybookFeaturesMdx, thingsYouMightNotKnowAboutTsMdx]
+export const allBlogs = [accessibilityMdx, browserRenderingOptimizationMdx, designingTheArchitectureMdx, dynamicFormMdx, editingGitCommitsMdx, fromRawDataPart_1Mdx, linuxCliTipsMdx, longestConsecutiveSequenceMdx, storybookFeaturesMdx, thingsYouMightNotKnowAboutTsMdx, buildingModernAnalyticsMdx]
