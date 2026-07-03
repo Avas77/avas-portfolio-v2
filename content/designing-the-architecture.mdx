@@ -1,0 +1,182 @@
+---
+title: "Designing the Architecture Before Writing Any SQL"
+summary: "The author outlines the critical importance of designing end-to-end data systems before implementing code, mapping out the architecture of their Airbnb project."
+type: Blog
+publishedAt: 2026-07-02
+---
+
+## From Raw Data to Business Data Products (Part 2)
+
+When I started building this analytics engineering project using Airbnb data, my instinct was to jump straight into tools.
+
+* Load data into Snowflake.
+* Create dbt models.
+* Build Host360.
+* Build dashboards.
+* Done.
+
+That felt like progress. But I quickly realized something important:
+
+> **If you don't design the system first, every model you build becomes accidental instead of intentional. And accidental architecture doesn't scale.**
+
+---
+
+## The First Mistake: Starting With Tables
+
+My first approach looked like this:
+
+1. Load CSV files into Snowflake
+2. Start writing SQL transformations
+3. Build tables as I needed them
+4. Connect Power BI at the end
+
+At first, this worked. I could query data, build metrics, and even create dashboards. But something felt wrong.
+
+Every new question required a new SQL query. Different dashboards calculated slightly different metrics. And I kept asking myself:
+
+> *"Why does the same business concept exist in 5 different SQL files?"*
+
+That's when I realized I wasn't building a system. **I was building scripts.**
+
+---
+
+## The Missing Piece: A Mental Model of the System
+
+Before writing any more SQL, I stopped and asked a different question: *What does the end-to-end analytics system actually need to look like?* Not tables, not dbt models, and not dashboards—a system.
+
+And I started sketching it out.
+
+### The Architecture Starts to Take Shape
+
+Every analytics system has the same flow:
+
+![modern-data-architecture](/assets/analytics-engineering/modern-architecture-flow.png)
+
+At first, this looks obvious. But the key insight is this:
+
+> **Each layer exists for a different type of user, not just a different technical purpose.**
+
+---
+
+## Understanding Each Layer (The Key Insight)
+
+Once I saw this, everything became clearer.
+
+### 1. Raw Data (S3)
+
+This layer is not meant for humans. It exists for:
+
+* **Storage**
+* **Durability**
+* **Replayability**
+
+At this stage, nothing is cleaned or modeled. It's just files.
+
+### 2. Data Warehouse (Snowflake)
+
+This is where structure begins to form. But importantly:
+
+> **The warehouse is optimized for querying data, not understanding business logic.**
+
+This is where I first loaded Airbnb datasets. But I realized something: even though queries were faster, business questions were still complex. Because raw tables don't represent decisions. **They represent events.**
+
+### 3. dbt Transformation Layer
+
+This is where things started to change. Instead of writing one-off SQL queries, dbt forced me to think in layers:
+
+* **Staging models**
+* **Dimensions**
+* **Facts**
+
+At first, this felt like extra work. Why not just create final tables directly? But as the project grew, I noticed something: every repeated SQL pattern started moving into reusable models.
+
+That's when I understood: dbt is not a tool for writing SQL. **It's a tool for organizing logic.**
+
+### 4. Business Data Products
+
+This is where the real shift happens. Instead of asking *"What table do I need?"*, I started asking: *"What business concept should exist as a reusable dataset?"*
+
+That led to:
+
+* **Host360** → one row per host
+* **Listing360** → one row per listing
+* **Neighborhood Summary** → one row per neighborhood
+
+These are no longer transformations. **They are products.**
+
+### 5. Consumption Layer (Power BI)
+
+Finally, dashboards are not the system. They are the output. And this was another mental shift:
+
+> **Dashboards are not where logic lives. They are where logic is consumed.**
+
+---
+
+## The Key Realization That Changed Everything
+
+Once I saw the full architecture, one thing became obvious: writing SQL without designing the system first is like building roads without a city plan. You can do it. But eventually:
+
+* Routes become inconsistent
+* Traffic (queries) becomes messy
+* Maintenance becomes expensive
+* And no one trusts the system
+
+### How This Changed My Airbnb Project
+
+After defining the architecture, I stopped writing random transformations. Instead, every model had to answer:
+
+* Where does this sit in the architecture?
+* Who is the consumer of this layer?
+* Is this logic reusable or duplicated?
+* Does this belong in staging, intermediate, or marts?
+
+This single change made the project more structured immediately.
+
+---
+
+## The Revised Architecture (Airbnb Project)
+
+After this realization, the project started to look like this:
+
+```text
+S3 (Airbnb raw data)
+        ↓
+Snowflake (raw tables)
+        ↓
+dbt staging models
+        ↓
+dim_host
+dim_listing
+fact_reviews
+fact_calendar
+        ↓
+intermediate models
+        ↓
+Host360
+Listing360
+        ↓
+Neighborhood Summary
+        ↓
+Power BI Dashboards
+```
+
+But more importantly: each layer now had a purpose beyond "transformation".
+
+---
+
+## Why This Step Matters More Than Any Tool
+
+At this point, I hadn't written complex SQL yet. But I had already made the most important decision: **I designed the system before implementing it.**
+
+That's the difference between:
+
+* Someone who writes queries
+* Someone who builds analytics systems
+
+---
+
+## What Comes Next
+
+Now that the architecture is defined, the next question becomes practical: *How do we actually move raw Airbnb data from S3 into Snowflake in a structured, repeatable way?*
+
+That's where we'll go next. In the next article, we'll move from architecture to implementation and start building the ingestion layer inside Snowflake.
