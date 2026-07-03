@@ -1,0 +1,79 @@
+---
+title: "From Raw Data to Business Data Products (Part 1 Introduction)"
+summary: "The author reflects on a key mindset shift in analytics engineering: a data warehouse is only the foundation of data strategy, not the final destination."
+type: Blog
+publishedAt: 2026-07-01
+---
+
+## Why a Data Warehouse Alone Doesn't Solve Business Problems
+
+When I first started learning analytics engineering, I thought the goal was simple: get the data into a warehouse, organize it with dimensional modeling, and build dashboards.
+
+That seemed like the end of the journey.
+
+After all, modern data warehouses like Snowflake can store enormous amounts of data, execute complex SQL queries in seconds, and integrate with virtually every business intelligence tool. Once the data is there, aren't we finished?
+
+As I worked through an end-to-end analytics engineering project using Airbnb data, I realized the answer was no.
+
+> **The warehouse is not the destination. It's the foundation.**
+
+This realization completely changed how I think about analytics engineering.
+
+---
+
+## The Problem Every Business Faces
+
+Imagine you're part of Airbnb's operations team. One morning, a manager asks a simple question:
+
+> "Which hosts should we invite into our new Premium Host Program?"
+
+At first glance, this seems like an easy request. But where is the information?
+
+* Some of it lives in **listings**.
+* Some of it lives in **reviews**.
+* Some of it lives in the **host profile**.
+* Some of it lives in the **availability calendar**.
+
+To answer one business question, an analyst might need to join multiple tables, understand different business rules, and recreate the same calculations every time the question is asked.
+
+Now imagine marketing asks a similar question. Then finance. Then the product team.
+
+* Each team writes its own SQL.
+* Each team defines metrics slightly differently.
+
+Eventually, everyone is looking at different numbers while believing they are looking at the same business. 
+
+The problem is no longer the warehouse. **The problem is consistency.**
+
+---
+
+## A Warehouse Organizes Data. It Doesn't Organize Decisions.
+
+This was the biggest lesson I learned.
+
+A data warehouse is excellent at storing data. Dimensional models make querying that data faster and more intuitive. But neither automatically answers business questions.
+
+Business users don't think in terms of tables and joins. They think in terms of *customers, members, hosts, products, loans, or listings*. They want answers like:
+
+* Which hosts are our highest performers?
+* Which listings are declining in quality?
+* Which neighborhoods need attention?
+* Which members are likely to need a new financial product?
+
+These questions don't map neatly to a single fact table or dimension. **They require business context.**
+
+---
+
+## A Different Way to Think About Analytics Engineering
+
+As I continued building the project, I began to see analytics engineering differently. Instead of asking...
+
+> *"How do I transform this table?"*
+
+...I started asking:
+
+> *"What decision is someone trying to make?"*
+
+That simple change in perspective eventually led me to build business-focused data products rather than just warehouse models.
+
+In the next article, I'll explain why dimensional modeling is still essential and why, despite eventually creating unified business views, normalization and dimensional modeling remain the foundation of every well-designed analytics platform.
