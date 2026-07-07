@@ -1,0 +1,347 @@
+---
+title: "Why Intermediate Models Are the Most Underrated Layer in dbt Projects"
+summary: "The author explains how intermediate models solve the hidden problem of duplicated business logic, using host-level metrics from the Airbnb dataset to show why this layer is essential for reusability, correctness, and readability."
+type: Blog
+publishedAt: 2026-07-05
+---
+
+## From Raw Data to Business Data Products (Part 5)
+
+After building staging models, I felt like the hard part was done.
+
+The data was clean.
+
+The schema was consistent.
+
+The transformations were standardized.
+
+At that point, I thought I could directly start building final business models like:
+
+* Host360
+* Listing360
+* Executive dashboards
+
+But as I started writing more SQL, a problem quickly appeared.
+
+My queries were getting repetitive.
+
+And worse:
+
+> **The same business logic was being rewritten in multiple places.**
+
+That's when I realized something important:
+
+> **Staging models clean data — but they don't organize business logic.**
+
+That responsibility belongs to a less obvious but extremely important layer:
+
+**Intermediate models.**
+
+---
+
+## The Problem Intermediate Models Solve
+
+Without intermediate models, every final model (like Host360) starts to accumulate logic like:
+
+* Counting listings per host
+* Calculating occupancy rates
+* Aggregating calendar availability
+* Computing average review scores
+
+At first, this seems fine.
+
+But very quickly, problems appear:
+
+* Logic gets duplicated across models
+* Small metric differences appear between dashboards
+* Debugging becomes painful
+* SQL becomes harder to read and maintain
+
+I ran into this almost immediately when building host-level metrics.
+
+---
+
+## The Key Realization
+
+Instead of asking:
+
+> *"How do I build Host360?"*
+
+I had to step back and ask:
+
+> *"What logic will Host360 depend on repeatedly?"*
+
+That question led me to intermediate models.
+
+The idea is simple:
+
+> **Intermediate models are where reusable business logic lives.**
+
+Not raw data.
+
+Not final outputs.
+
+But everything in between.
+
+---
+
+## Intermediate Model 1: Host Listing Metrics
+
+The first intermediate model I built was focused on understanding hosts.
+
+Specifically:
+
+* How many listings does each host have?
+* What types of listings do they own?
+* What is their average property structure?
+
+Here is the model:
+
+```sql
+WITH listings AS (
+    SELECT *
+    FROM {{ ref('stg_listings') }}
+),
+
+transformed AS (
+    SELECT  
+        host_id,
+
+        COUNT(*) AS listing_count,
+
+        MAX(homes_count) AS entire_home_count,
+        MAX(private_rooms_count) AS private_room_count,
+        MAX(shared_rooms_count) AS shared_room_count,
+
+        AVG(accommodates) AS avg_accommodates,
+        AVG(bedrooms) AS avg_bedrooms,
+        AVG(beds) AS avg_beds,
+        AVG(bathrooms) AS avg_bathrooms,
+
+        AVG(minimum_nights) AS minimum_nights_avg
+
+    FROM listings
+    GROUP BY host_id
+)
+
+SELECT * FROM transformed;
+```
+
+### Why this model matters
+
+At first glance, this looks like a simple aggregation.
+
+But conceptually, it does something important:
+
+> **It transforms "listings data" into "host behavior data."**
+
+This is the first step where the grain changes meaningfully:
+
+* Before → listing-level data
+* Now → host-level behavior
+
+And this transformation becomes reusable.
+
+Instead of recalculating host metrics in every downstream model, this logic is computed once.
+
+---
+
+## Intermediate Model 2: Host Calendar Metrics
+
+The second intermediate model focuses on a different dimension:
+
+**how hosts perform over time.**
+
+This is where availability, occupancy, and booking patterns come in.
+
+Instead of working at the listing level, I aggregated everything to the host level.
+
+```sql
+WITH listing_calendar_metrics AS (
+    SELECT *
+    FROM {{ ref('int_listing_calendar_metrics') }}
+),
+
+transformed AS (
+    SELECT
+        host_id,
+
+        SUM(available_days) AS available_days,
+        SUM(booked_days) AS booked_days,
+        SUM(total_days) AS total_days,
+
+        -- Host-level occupancy rate
+        ROUND(
+            SUM(booked_days) * 100.0 / NULLIF(SUM(total_days), 0),
+            2
+        ) AS occupancy_rate,
+
+        -- Weighted average of minimum nights
+        ROUND(
+            SUM(sum_minimum_nights_available) * 1.0 /
+            NULLIF(SUM(available_days), 0),
+            2
+        ) AS avg_minimum_nights_available
+
+    FROM listing_calendar_metrics
+    GROUP BY host_id
+)
+
+SELECT * FROM transformed;
+```
+
+### Why this model is more interesting
+
+This model is where the logic becomes mathematically and conceptually important.
+
+**1. Occupancy rate is not a simple average**
+
+```text
+SUM(booked_days) / SUM(total_days)
+```
+
+This ensures correctness at scale.
+
+If I had computed occupancy at the listing level and then averaged it, I would get a biased result.
+
+This is a classic analytics engineering mistake.
+
+**2. Weighted aggregation matters**
+
+```text
+SUM(sum_minimum_nights_available) / SUM(available_days)
+```
+
+This avoids treating all listings equally when they have different availability distributions.
+
+This is where intermediate models become powerful:
+
+> **They encode correct business logic once, instead of repeating it everywhere incorrectly.**
+
+---
+
+## The Real Purpose of Intermediate Models
+
+After building these two models, the pattern became clear.
+
+Intermediate models are not about performance.
+
+They are about shared understanding of business logic.
+
+They solve three key problems:
+
+### 1. Reusability
+
+Without intermediate models:
+
+* Every dashboard recalculates host metrics
+* Every model duplicates logic
+
+With intermediate models:
+
+* Logic is computed once and reused everywhere
+
+### 2. Correctness
+
+Some metrics are mathematically sensitive:
+
+* Ratios
+* Weighted averages
+* Aggregations across multiple grains
+
+Intermediate models ensure these are calculated correctly once, not inconsistently across models.
+
+### 3. Readability
+
+Final models like Host360 become much simpler:
+
+Instead of:
+
+```text
+200 lines of aggregation logic
+```
+
+We get:
+
+```sql
+SELECT *
+FROM int_host_metrics
+JOIN int_host_calendar_metrics
+```
+
+---
+
+## How This Fits Into the Airbnb Project
+
+At this point, the architecture looks like this:
+
+```text
+RAW
+  ↓
+STAGING
+  ↓
+INTERMEDIATE MODELS
+      ├── host metrics
+      ├── listing metrics
+      ├── calendar metrics
+  ↓
+MARTS (Host360, Listing360)
+```
+
+The important shift is:
+
+> **Intermediate models are where business logic becomes stable.**
+
+---
+
+## What Changed in My Thinking
+
+Before intermediate models:
+
+> *"I'll compute everything inside Host360."*
+
+After intermediate models:
+
+> *"Host360 should only assemble pre-computed, trusted logic."*
+
+That shift completely changed how I approached dbt.
+
+I stopped thinking in terms of:
+
+**single big queries**
+
+and started thinking in terms of:
+
+**reusable building blocks**
+
+---
+
+## What We Have Built So Far
+
+At this point in the project:
+
+* Raw data is ingested into Snowflake
+* Staging models standardize structure
+* Intermediate models encode business logic
+
+Now we finally have something important:
+
+> **A system where business logic is reusable, consistent, and testable.**
+
+---
+
+## Looking Ahead
+
+In the next article, we'll move into the most conceptually important modeling layer:
+
+**Facts vs Dimensions in Airbnb Data**
+
+This is where we define:
+
+* What actually counts as a "fact" in this system
+* How listing, host, and calendar data should be structured
+* And why intermediate models are not enough on their own
+
+And most importantly:
+
+> **How these layers come together to form the foundation of Host360.**
