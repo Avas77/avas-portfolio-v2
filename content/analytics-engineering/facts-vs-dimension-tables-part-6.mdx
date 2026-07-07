@@ -1,0 +1,296 @@
+---
+title: "Do You Always Need Fact Tables? Rethinking Dimensional Modeling in Modern Analytics Engineering"
+summary: "The author challenges the assumption that every analytics project needs standalone fact tables, exploring why the Airbnb project relies on dimensions and intermediate models instead, and how architecture should serve business needs rather than a textbook template."
+type: Blog
+publishedAt: 2026-07-06
+---
+
+## From Raw Data to Business Data Products (Part 6)
+
+One of the biggest surprises I encountered while building this project wasn't writing SQL or learning dbt.
+
+It was realizing that my project didn't look exactly like the dimensional modeling diagrams I had spent months studying.
+
+When I first learned dimensional modeling, the architecture always looked something like this:
+
+![facts-dimensions](/assets/analytics-engineering/facts-dimensions.png)
+
+The pattern seemed universal.
+
+Every warehouse had dimensions.
+
+Every warehouse had facts.
+
+Every dashboard queried fact tables joined to dimensions.
+
+So naturally, as I started building my Airbnb analytics platform, I expected to create both.
+
+But something interesting happened.
+
+As the project evolved, I found myself creating dimensions while never actually building standalone fact tables.
+
+At first, I thought I had made a mistake.
+
+Had I skipped an important modeling step?
+
+Was my architecture incomplete?
+
+The answer turned out to be much more interesting.
+
+---
+
+## Understanding What Facts and Dimensions Actually Represent
+
+Before deciding whether a project needs fact tables, it's important to understand what facts and dimensions are trying to accomplish.
+
+A **dimension** represents a business entity.
+
+Examples include:
+
+* Hosts
+* Listings
+* Members
+* Customers
+* Products
+
+Dimensions answer questions like:
+
+* Who is this?
+* What is it?
+* Where is it?
+
+They describe things that exist in the business.
+
+A **fact table**, on the other hand, represents events or measurements.
+
+Examples include:
+
+* Purchases
+* Transactions
+* Reviews
+* Calendar availability
+* Website visits
+
+Facts answer questions like:
+
+* What happened?
+* When did it happen?
+* How much?
+
+Every row represents an event occurring at a particular grain.
+
+This distinction is fundamental to dimensional modeling and remains just as relevant today as it was when Kimball first introduced the methodology.
+
+---
+
+## The Airbnb Dataset Through a Dimensional Modeling Lens
+
+Looking at the Airbnb dataset, the modeling becomes fairly intuitive.
+
+The **hosts** dataset represents people listing properties on the platform.
+
+Those are business entities.
+
+The **listings** dataset represents properties.
+
+Those are also business entities.
+
+Naturally, these become dimensions.
+
+Meanwhile, the **reviews** dataset records interactions between guests and listings.
+
+Each review represents a specific event.
+
+Similarly, the **calendar** dataset records the availability of a listing on a particular date.
+
+Again, every row represents an observation occurring at a defined grain.
+
+From a classical dimensional modeling perspective, reviews and calendar data could absolutely be modeled as fact tables.
+
+And if I were designing a reusable enterprise warehouse serving dozens of teams, that's probably what I would do.
+
+---
+
+## So Why Didn't I Build Fact Tables?
+
+This was the question I kept asking myself.
+
+The answer came from thinking about the purpose of my project rather than trying to replicate a textbook architecture.
+
+The business objective of this project was to build business-ready data products such as:
+
+* Host360
+* Listing360
+* Neighborhood Summary
+
+None of these consumers needed direct access to every individual calendar event or every individual review.
+
+Instead, they needed aggregated business metrics such as:
+
+* Occupancy rate
+* Average ratings
+* Review counts
+* Booked days
+* Available days
+
+Those metrics were computed inside intermediate models.
+
+For example, rather than exposing millions of calendar records as a reusable fact table, I transformed them into host-level availability metrics.
+
+That reusable business logic was then consumed by Host360.
+
+The architecture became:
+
+```text
+RAW
+   ↓
+STAGING
+   ↓
+INTERMEDIATE
+   ↓
+Host360
+```
+
+Instead of:
+
+```text
+RAW
+   ↓
+STAGING
+   ↓
+FACTS
+   ↓
+INTERMEDIATE
+   ↓
+Host360
+```
+
+Both architectures are valid.
+
+The appropriate choice depends on what the business actually needs.
+
+---
+
+## Building the Host Dimension
+
+Although I didn't create explicit fact tables, I did create dimensions.
+
+One of the first was the host dimension.
+
+```sql
+WITH hosts AS (
+
+    SELECT *
+    FROM {{ ref('stg_hosts') }}
+
+)
+
+SELECT *
+FROM hosts
+```
+
+At first glance, this model appears almost trivial.
+
+It simply selects data from the staging model.
+
+There are no joins.
+
+No aggregations.
+
+No calculations.
+
+Initially, I wondered whether this model was even necessary.
+
+Why not just reference `stg_hosts` everywhere?
+
+The answer is that dimensions are defined by their purpose, not by the amount of SQL they contain.
+
+The staging layer exists to standardize source data.
+
+The dimension layer exists to define stable business entities.
+
+Today those two models happen to look identical.
+
+That won't always be true.
+
+Imagine Airbnb later introduces historical host profile changes, duplicate source records, or additional identity resolution logic.
+
+The staging model would continue reflecting the source.
+
+The dimension would evolve to represent the business entity correctly.
+
+Keeping these responsibilities separate gives the architecture room to evolve without affecting downstream models.
+
+---
+
+## A Dimension Doesn't Need Complex SQL
+
+This was another misconception I had while learning analytics engineering.
+
+I assumed that every dimension would involve complicated transformations.
+
+In reality, many dimensions are intentionally simple.
+
+Their value comes from providing a stable representation of an entity, not from performing calculations.
+
+Business metrics belong elsewhere.
+
+This separation makes the entire warehouse easier to understand.
+
+When I open a dimension model, I expect to learn about an entity.
+
+When I open an intermediate model, I expect to see business logic.
+
+When I open a mart, I expect to see business-ready information.
+
+Each layer has a single responsibility.
+
+---
+
+## Architecture Should Serve the Business
+
+One of the biggest lessons I learned from this project is that architecture should always serve the business, not the other way around.
+
+Dimensional modeling is an incredibly valuable framework because it teaches us to separate entities from events and to think carefully about grain.
+
+But applying dimensional modeling does not mean every project must contain a long list of explicit fact tables.
+
+If event-level data needs to be reused by many teams, building reusable fact models is an excellent design choice.
+
+If the business objective is to deliver curated metrics for specific analytical products, transforming event-level data into reusable intermediate models can be equally effective.
+
+The important part is understanding *why* each layer exists.
+
+Good architecture isn't about following a template.
+
+It's about making intentional design decisions that support the needs of the people using the data.
+
+---
+
+## What We Have Built So Far
+
+At this point in the project, we have established a complete analytics engineering foundation.
+
+* Raw Airbnb data is ingested into Snowflake.
+* Staging models standardize the source data.
+* YAML tests validate data quality and enforce expectations.
+* Dimensions define stable business entities.
+* Intermediate models compute reusable business metrics.
+
+Every layer has a clear responsibility.
+
+Now we are finally ready to build something that business users actually interact with.
+
+---
+
+## Looking Ahead
+
+In the next article, we'll build the first complete business data product: **Host360**.
+
+Rather than performing complex calculations inside a single SQL model, we'll assemble trusted metrics from the intermediate layer together with descriptive attributes from the host dimension.
+
+This is where the architecture we've been building finally comes together.
+
+Instead of creating another warehouse model, we'll create something designed for decision-making.
+
+And that, ultimately, is the goal of analytics engineering.
