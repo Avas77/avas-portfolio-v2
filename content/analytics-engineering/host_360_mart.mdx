@@ -1,0 +1,338 @@
+---
+title: "Building Host360: Implementing Our First Business Data Product"
+summary: "The author assembles the first complete business data product, Host360, by combining the host dimension with reusable intermediate metrics, and explores why the final layer of a data pipeline should be the simplest one."
+type: Blog
+publishedAt: 2026-07-08
+---
+
+## From Raw Data to Business Data Products (Part 8)
+
+For the first several weeks of this project, it felt like I was building infrastructure.
+
+I ingested data into Snowflake.
+
+I created staging models.
+
+I organized transformations into intermediate models.
+
+I built dimensions.
+
+Every layer had a purpose, but none of them directly answered a business question.
+
+Then I realized something important.
+
+Businesses don't make decisions using staging models.
+
+They don't care about intermediate aggregations.
+
+They don't ask for dimensions.
+
+They ask questions like:
+
+* Which hosts are our highest performers?
+* Which hosts are struggling to attract bookings?
+* Which hosts should we invite into a premium program?
+* Which hosts might benefit from additional support?
+
+These questions aren't about tables.
+
+They're about people.
+
+This is where the idea of **Host360** comes in.
+
+Instead of exposing dozens of warehouse models, we create a single business-ready view that brings everything we know about a host into one place.
+
+Host360 isn't another transformation layer.
+
+It's a **data product**.
+
+---
+
+## What Does "360" Actually Mean?
+
+When I first heard terms like *Customer360* or *Member360*, I assumed they referred to one massive denormalized table.
+
+Technically, that's true.
+
+But the more important idea is this:
+
+> **A 360 model gives every downstream consumer a complete, trusted view of a business entity.**
+
+Instead of asking analysts to join five different tables every time they need information about a host, we do that work once.
+
+The result is a dataset that is easy to understand and easy to consume.
+
+For this project, the business entity is the Airbnb host.
+
+---
+
+## Building Host360
+
+By the time I started building Host360, most of the difficult work had already been completed.
+
+The staging layer standardized the raw data.
+
+The dimension layer represented the host entity.
+
+The intermediate models calculated reusable business metrics.
+
+Host360 simply brings those pieces together.
+
+```sql
+WITH host AS (
+
+    SELECT *
+    FROM {{ ref('dim_host') }}
+
+),
+
+listing_metrics AS (
+
+    SELECT *
+    FROM {{ ref('int_host_listing_metrics') }}
+
+),
+
+review_metrics AS (
+
+    SELECT *
+    FROM {{ ref('int_host_review_metrics') }}
+
+),
+
+calendar_metrics AS (
+
+    SELECT *
+    FROM {{ ref('int_host_calendar_metrics') }}
+
+)
+
+SELECT
+
+    -- Identity
+    host.host_id,
+    host.host_name,
+    host.host_location,
+    host.host_is_superhost,
+    host.host_identity_verified,
+
+    -- Portfolio
+    listing_metrics.listing_count,
+    listing_metrics.avg_accommodates,
+    listing_metrics.avg_bedrooms,
+    listing_metrics.avg_bathrooms,
+
+    -- Quality
+    review_metrics.avg_rating,
+    review_metrics.avg_cleanliness,
+    review_metrics.avg_accuracy,
+    review_metrics.avg_location,
+    review_metrics.avg_value,
+    review_metrics.review_count,
+
+    -- Availability
+    calendar_metrics.available_days,
+    calendar_metrics.booked_days,
+    calendar_metrics.avg_minimum_nights_available,
+    calendar_metrics.occupancy_rate
+
+FROM host
+
+LEFT JOIN listing_metrics
+    ON host.host_id = listing_metrics.host_id
+
+LEFT JOIN review_metrics
+    ON host.host_id = review_metrics.host_id
+
+LEFT JOIN calendar_metrics
+    ON host.host_id = calendar_metrics.host_id
+```
+
+At first glance, the model almost looks too simple.
+
+There are no complicated calculations.
+
+No large aggregations.
+
+No complex window functions.
+
+That simplicity is intentional.
+
+Every metric has already been computed upstream.
+
+Host360 isn't responsible for calculating business logic.
+
+It's responsible for presenting trusted information in a form that people can use.
+
+---
+
+## A Different Way to Think About Data Modeling
+
+One of the biggest mindset shifts I experienced during this project was realizing that the final model should be the simplest model.
+
+When I first started learning analytics engineering, I assumed complexity belonged at the end of the pipeline.
+
+I expected Host360 to contain hundreds of lines of SQL.
+
+Instead, I discovered the opposite.
+
+The complexity belongs upstream.
+
+By the time data reaches the final business layer, the difficult work should already be finished.
+
+The final model becomes an assembly step rather than a transformation step.
+
+This makes the model easier to understand, easier to test, and much easier to maintain.
+
+---
+
+## Organizing Information Around the Business
+
+One design choice I found particularly helpful was grouping related information together.
+
+Instead of presenting a long list of unrelated columns, Host360 naturally falls into four categories.
+
+### Identity
+
+These attributes answer a simple question:
+
+**Who is the host?**
+
+Examples include:
+
+* Host name
+* Location
+* Superhost status
+* Identity verification
+
+These rarely require calculations and primarily come from the dimension table.
+
+---
+
+### Portfolio
+
+The next group describes the host's property portfolio.
+
+Examples include:
+
+* Number of listings
+* Average bedrooms
+* Average bathrooms
+* Average guest capacity
+
+Rather than exposing every listing individually, these metrics summarize the host's portfolio.
+
+---
+
+### Quality
+
+Quality metrics combine information gathered from reviews.
+
+Instead of asking analysts to aggregate thousands of review records every time they need an average rating, Host360 already provides:
+
+* Average rating
+* Cleanliness score
+* Accuracy score
+* Location score
+* Value score
+* Total review count
+
+These metrics are ready for immediate analysis.
+
+---
+
+### Availability
+
+Finally, Host360 includes operational metrics derived from the calendar dataset.
+
+These answer questions such as:
+
+* How many days are available?
+* How many days are booked?
+* What is the occupancy rate?
+* What minimum stay is typically required?
+
+Again, none of these calculations happen inside Host360.
+
+They are simply presented together in one business-friendly view.
+
+---
+
+## Why This Is More Than a Denormalized Table
+
+Initially, I assumed Host360 was simply a denormalized table.
+
+Technically, it is.
+
+But that's not what makes it valuable.
+
+Its value comes from consistency.
+
+Every analyst who queries Host360 uses the same definitions for:
+
+* Occupancy rate
+* Average rating
+* Listing count
+* Review count
+
+No one needs to rewrite SQL.
+
+No one needs to remember complicated joins.
+
+No one needs to wonder whether another team calculated the metric differently.
+
+The business now has a single, trusted representation of a host.
+
+---
+
+## Imagine This in a Credit Union
+
+While building this project, I started thinking about how the same architecture could apply outside Airbnb.
+
+Imagine replacing **Host360** with **Member360**.
+
+Instead of listing metrics, you might include:
+
+* Number of active accounts
+* Total deposits
+* Loan balances
+* Digital banking activity
+* Product adoption
+* Member tenure
+* Branch interactions
+
+The architecture barely changes.
+
+Only the business entity changes.
+
+That's what makes the 360 pattern so powerful.
+
+Once you understand it, you start seeing it everywhere.
+
+---
+
+## What We Have Built
+
+For the first time in the project, we now have a complete business data product.
+
+Host360 is no longer organized around source systems or warehouse tables.
+
+It's organized around a business entity.
+
+Everything we've built so far, from ingestion to staging, dimensions, and intermediate models, exists to support this final view.
+
+The warehouse is no longer just storing data.
+
+It's delivering business-ready information.
+
+---
+
+## Looking Ahead
+
+Host360 gives us a complete view of individual hosts.
+
+But businesses often need to understand another important entity: the listing itself.
+
+In the next article, we'll build **Listing360**, following the same architectural principles while focusing on properties instead of hosts.
+
+Together, Host360 and Listing360 will form the foundation for higher-level executive summaries and analytical dashboards.
