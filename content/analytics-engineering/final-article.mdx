@@ -1,0 +1,284 @@
+---
+title: "From Tables to Decisions: What Building This Project Taught Me About Analytics Engineering"
+summary: "Closing reflections on the mindset shift from moving data to designing trusted, decision-ready data products."
+type: Blog
+publishedAt: 2026-07-11
+---
+
+When I started this project, I thought analytics engineering was mostly about moving data.
+
+Load the files.
+
+Clean the columns.
+
+Build a warehouse.
+
+Create some dashboards.
+
+That seemed like the complete workflow.
+
+Months later, after building an end-to-end analytics platform using Snowflake and dbt, I realized how incomplete that understanding was.
+
+The biggest lessons I learned had very little to do with SQL.
+
+Instead, they completely changed how I think about data.
+
+This final article isn't about another model.
+
+It's about the mindset I gained while building the project.
+
+---
+
+## Lesson 1: A Data Warehouse Is the Beginning, Not the End
+
+When I first learned about cloud data warehouses like Snowflake, they felt like the destination.
+
+After all, once the data is loaded into a warehouse, couldn't analysts simply write SQL whenever they needed information?
+
+Technically, yes.
+
+Practically, no.
+
+Different analysts would write different queries.
+
+Teams would calculate metrics differently.
+
+Business definitions would slowly drift apart.
+
+Eventually, everyone would have data.
+
+No one would have agreement.
+
+I learned that a warehouse stores information.
+
+It doesn't organize knowledge.
+
+That's the role of analytics engineering.
+
+---
+
+## Lesson 2: Every Layer Exists for a Reason
+
+One question kept bothering me throughout the project.
+
+If our final models combine everything into a single 360 view, why did we spend so much time learning normalization, dimensional modeling, and layered transformations?
+
+At one point, I genuinely wondered whether we could have skipped all of that and simply stored everything together from the beginning.
+
+The answer became clear as the project grew.
+
+Each layer solves a different problem.
+
+The raw layer preserves the original source data.
+
+The staging layer standardizes inconsistent inputs.
+
+Intermediate models calculate reusable business logic.
+
+Dimensions provide stable business entities.
+
+Business data products organize information around how people make decisions.
+
+Executive summaries provide strategic insight.
+
+Each layer exists because it reduces complexity for the layer above it.
+
+Without those layers, every dashboard and every analyst would need to recreate the same work repeatedly.
+
+---
+
+## Lesson 3: SQL Isn't the Product
+
+Early in the project, I measured progress by how many models I had built.
+
+Eventually, I realized that no one outside the data team cares how many SQL models exist.
+
+The business cares about questions.
+
+Can we identify our highest-performing hosts?
+
+Can we understand occupancy?
+
+Can we decide where to invest?
+
+Analytics engineering isn't about producing SQL.
+
+It's about reducing the effort required to answer important business questions.
+
+SQL is simply the implementation.
+
+The product is understanding.
+
+---
+
+## Lesson 4: Data Products Changed How I Think
+
+The biggest conceptual shift came when I built Host360.
+
+Until then, I was organizing data around source systems.
+
+Listings.
+
+Reviews.
+
+Calendar data.
+
+Hosts.
+
+Host360 forced me to organize data around a business entity instead.
+
+That simple change had a profound effect.
+
+Instead of asking:
+
+> "Which tables do I need?"
+
+I started asking:
+
+> "What decision is someone trying to make?"
+
+Everything else became easier.
+
+Listing360 followed the same pattern.
+
+The executive summary followed the same pattern.
+
+Once I understood the idea of designing data products, I started seeing them everywhere.
+
+Customer360.
+
+Member360.
+
+Patient360.
+
+Student360.
+
+Product360.
+
+Different industries.
+
+The same architecture.
+
+---
+
+## Lesson 5: Good Architecture Makes Simple SQL Possible
+
+One thing surprised me throughout the project.
+
+The closer I moved toward the business, the simpler my SQL became.
+
+Initially, I expected the opposite.
+
+I assumed the final models would be the most complicated.
+
+Instead, they were often the smallest.
+
+The difficult work had already been completed upstream.
+
+By the time I reached the business layer, the final models simply assembled trusted pieces into a coherent whole.
+
+That simplicity wasn't an accident.
+
+It was evidence that the architecture was doing its job.
+
+---
+
+## Lesson 6: Analytics Engineering Is a Team Sport
+
+Although I built this project by myself, I gradually realized that the architecture was designed for collaboration.
+
+Data engineers focus on reliable ingestion.
+
+Analytics engineers transform data into reusable products.
+
+Analysts explore those products to answer business questions.
+
+Data scientists use them as feature sets for predictive models.
+
+Business stakeholders make decisions from dashboards and reports.
+
+Each group builds on the work of the previous one.
+
+Analytics engineering sits in the middle, translating raw data into trusted information.
+
+That role is much more strategic than I originally understood.
+
+---
+
+## Lesson 7: Every Project Should Teach You How to Think
+
+Looking back, I don't think the most valuable outcome of this project was Host360.
+
+Or Listing360.
+
+Or the executive dashboard.
+
+The most valuable outcome was learning a repeatable way to approach data problems.
+
+Whenever I encounter a new business domain, I now find myself asking the same questions.
+
+What is the business entity?
+
+Who are the consumers?
+
+What decisions are they trying to make?
+
+What metrics answer those questions?
+
+What reusable data products should exist?
+
+Those questions apply whether the company is Airbnb, a retailer, a hospital, or a credit union.
+
+The technology may change.
+
+The thinking remains remarkably consistent.
+
+---
+
+## Looking Forward
+
+This project began as an exercise to learn dbt and Snowflake.
+
+It became something much larger.
+
+It taught me how modern analytics platforms are designed.
+
+It taught me why layered architectures exist.
+
+It taught me why dimensional modeling still matters.
+
+Most importantly, it taught me that analytics engineering isn't about tables.
+
+It's about trust.
+
+Every transformation we build is an attempt to make business decisions a little more reliable.
+
+Every data product is an attempt to make information easier to understand.
+
+Every layer in the architecture exists so that someone, somewhere in the organization, can answer a question with confidence.
+
+That's the real purpose of analytics engineering.
+
+And it's a perspective I'll carry into every project I build from now on.
+
+---
+
+## Final Thoughts
+
+When I began this series, I thought I was documenting a technical project.
+
+Looking back, I realize I was documenting a change in perspective.
+
+The SQL models, diagrams, and dashboards are important, but they're not the biggest takeaway.
+
+The biggest lesson is learning to think beyond tables.
+
+To design for people instead of databases.
+
+To build reusable products instead of isolated queries.
+
+And to remember that the best analytics platforms aren't measured by how much data they store.
+
+They're measured by how much better they help people make decisions.
+
+If this series helps even one reader make that same shift in thinking, then building — and documenting — this project will have been well worth it.
