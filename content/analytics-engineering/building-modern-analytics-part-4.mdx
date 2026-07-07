@@ -1,0 +1,315 @@
+---
+title: "Why Staging Models Are More Than SQL: The Hidden Power of dbt Tests and Data Contracts"
+summary: "The author explores how dbt staging models go beyond simple transformation logic, using YAML-based tests and data contracts to enforce data integrity across the Airbnb analytics project."
+type: Blog
+publishedAt: 2026-07-04
+---
+
+## From Raw Data to Business Data Products (Part 4)
+
+After loading the Airbnb dataset into Snowflake, I moved to the next layer of the architecture: dbt staging models.
+
+At first, I thought staging was just about cleaning data:
+
+* Renaming columns
+* Fixing data types
+* Selecting fields
+
+But as I started building more models, I discovered something I initially underestimated:
+
+> **Staging models are not just transformation logic, they are also the first layer of data quality enforcement.**
+
+And in dbt, that enforcement happens through something most beginners ignore:
+
+> **YAML-based testing and documentation.**
+
+---
+
+## The Missing Piece in My First Approach
+
+My early staging models looked like this:
+
+```sql
+SELECT
+    id AS listing_id,
+    host_id,
+    neighbourhood AS neighborhood,
+    room_type,
+    price,
+    minimum_nights,
+    review_scores_rating
+FROM {{ source('raw', 'listings') }}
+```
+
+This handled structure.
+
+But it did **NOT** answer important questions like:
+
+* Is `listing_id` actually unique?
+* Can it ever be null?
+* Do reviews always belong to a valid listing?
+* Can calendar data have duplicate date rows?
+
+Without answers to these questions, the models looked correct, but weren't trustworthy.
+
+That's when I realized:
+
+> **Transformations without validation are incomplete.**
+
+---
+
+## Introducing dbt YAML: Turning Models Into Contracts
+
+In dbt, every model can be paired with a YAML file that defines:
+
+* What the model represents
+* What each column means
+* What constraints it must satisfy
+
+This is where analytics engineering starts to feel closer to software engineering.
+
+Instead of only writing transformations, we also define expectations.
+
+Here is the staging layer configuration I used:
+
+```yaml
+models:
+  - name: stg_listings
+    description: one listing per row
+    columns:
+      - name: listing_id
+        description: primary key
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_reviews
+    description: one review per row
+    columns:
+      - name: review_id
+        tests:
+          - unique
+          - not_null
+      - name: listing_id
+        tests:
+          - not_null
+
+  - name: stg_calendar
+    description: one row per date per listing
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - listing_id
+              - calendar_date
+
+  - name: stg_hosts
+    description: one row per host
+    columns:
+      - name: host_id
+        tests:
+          - unique
+          - not_null
+```
+
+---
+
+## Why This YAML File Is More Important Than It Looks
+
+At first glance, this looks like metadata.
+
+But in reality, this file defines something much more powerful:
+
+> **It defines what "correct data" means for the entire project.**
+
+Let's break it down.
+
+### 1. Defining Uniqueness = Defining Identity
+
+For example:
+
+```yaml
+- name: listing_id
+  data_tests:
+    - unique
+    - not_null
+```
+
+This tells us:
+
+> *"A listing must always be uniquely identifiable."*
+
+This seems obvious until you work with real-world data.
+
+Because in messy datasets:
+
+* IDs can be duplicated
+* IDs can be missing
+* IDs can change over time
+
+By enforcing this rule, we are not just documenting data.
+
+**We are enforcing business identity rules.**
+
+### 2. Relationships Matter (Not Just Columns)
+
+In the reviews model:
+
+```yaml
+- name: listing_id
+  tests:
+    - not_null
+```
+
+This ensures that every review must belong to a listing.
+
+This is subtle but important.
+
+It prevents:
+
+* Orphaned reviews
+* Broken joins
+* Misleading aggregations
+
+Without this, downstream models like Host360 or Listing360 could silently produce incorrect results.
+
+### 3. Composite Uniqueness: Calendar Data Is Special
+
+The calendar model introduced something more interesting:
+
+```yaml
+- dbt_utils.unique_combination_of_columns:
+    arguments:
+      combination_of_columns:
+        - listing_id
+        - calendar_date
+```
+
+This reflects a deeper concept:
+
+> **Some datasets don't have a single primary key — their identity is composite.**
+
+In Airbnb's calendar data:
+
+* A listing can appear many times
+* Each row represents a specific date
+* Meaning identity is defined by (listing_id + date)
+
+This is a classic analytics modeling concept:
+
+> **Grain definition matters more than columns.**
+
+### 4. Why Hosts Need Their Own Integrity Rules
+
+For hosts:
+
+```yaml
+- name: host_id
+  tests:
+    - unique
+    - not_null
+```
+
+This defines a clean assumption:
+
+> **One host = one unique entity in the system.**
+
+This becomes critical later when building:
+
+* Host360
+* Performance metrics
+* Listing aggregation
+
+Because if host identity is not stable, every downstream metric becomes unreliable.
+
+---
+
+## The Real Insight: dbt Tests Are Not Optional
+
+At first, I treated these tests as optional checks.
+
+Something to run "just in case".
+
+But as the project grew, I realized:
+
+> **These tests are not validation — they are design decisions.**
+
+They define:
+
+* What the system considers valid data
+* What assumptions downstream models can rely on
+* How trust is established across the pipeline
+
+Without them, every model becomes a guess.
+
+---
+
+## Staging Layer After Adding Tests
+
+After introducing both staging models and YAML tests, the architecture evolved again:
+
+```text
+RAW (Snowflake)
+   ↓
+STAGING (dbt + tests)
+   ↓
+INTERMEDIATE MODELS
+   ↓
+MARTS (Host360, Listing360)
+```
+
+But now there is an important difference:
+
+> **The staging layer is no longer just transformation — it is a validation boundary.**
+
+---
+
+## Why This Matters for the Rest of the Project
+
+This becomes extremely important when we later build:
+
+* **Host360**
+  * Relies on host uniqueness
+  * Assumes stable listing relationships
+* **Listing360**
+  * Depends on valid listing IDs
+  * Assumes clean review linkage
+* **Executive Layer**
+  * Assumes all upstream metrics are trustworthy
+
+If staging tests are wrong or missing:
+
+> **Every downstream model silently becomes unreliable.**
+
+---
+
+## What We Have Built So Far
+
+At this point in the project:
+
+* Raw Airbnb data is ingested into Snowflake
+* A dbt project structure exists
+* Staging models standardize raw data
+* YAML tests enforce data integrity rules
+
+We now have something very important:
+
+> **A transformation layer that is not only structured — but also trustworthy.**
+
+---
+
+## Looking Ahead
+
+In the next article, we'll move deeper into modeling:
+
+**Why Intermediate Models Are the Most Underestimated Layer in dbt Projects**
+
+This is where we define:
+
+* What a "fact" actually is in this project
+* How grain changes modeling decisions
+* Why staging alone is not enough for analytics
+
+And most importantly:
+
+> **How raw data becomes a structured system that can support real business questions.**

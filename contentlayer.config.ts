@@ -7,7 +7,7 @@ import {
 const computedFields: ComputedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ""),
+    resolve: (doc) => doc._raw.flattenedPath.split("/").pop(),
   },
 };
 
