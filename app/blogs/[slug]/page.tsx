@@ -5,10 +5,10 @@ import { format, parseISO } from "date-fns";
 import React from "react";
 
 export const generateStaticParams = async () =>
-  allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }));
+  allBlogs.map((blog) => ({ slug: blog.slug }));
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
-  const blog = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug);
+  const blog = allBlogs.find((blog) => blog.slug === params.slug);
   if (!blog) throw new Error(`Post not found for slug: ${params.slug}`);
 
   const ogImage = `${siteMetadata.siteUrl}/og?title=${blog.title}`;
@@ -43,7 +43,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
 };
 
 const BlogLayout = ({ params }: { params: { slug: string } }) => {
-  const blog = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug);
+  const blog = allBlogs.find((blog) => blog.slug === params.slug);
   if (!blog) throw new Error(`Post not found for slug: ${params.slug}`);
 
   return (

@@ -6,7 +6,7 @@ import {
 var computedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, "")
+    resolve: (doc) => doc._raw.flattenedPath.split("/").pop()
   }
 };
 var Blog = defineDocumentType(() => ({
@@ -41,4 +41,4 @@ export {
   Blog,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-326UQFE3.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-ZFB57JHC.mjs.map
