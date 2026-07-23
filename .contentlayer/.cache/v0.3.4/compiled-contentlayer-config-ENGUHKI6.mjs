@@ -29,6 +29,14 @@ var Blog = defineDocumentType(() => ({
     image: {
       type: "string"
     },
+    series: {
+      type: "string",
+      required: false
+    },
+    order: {
+      type: "number",
+      required: false
+    },
     draft: { type: "boolean", default: false }
   },
   computedFields
@@ -41,4 +49,4 @@ export {
   Blog,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-ZFB57JHC.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-ENGUHKI6.mjs.map
