@@ -8,16 +8,16 @@ import linuxCliTipsMdx from './linux-cli-tips.mdx.json' assert { type: 'json' }
 import longestConsecutiveSequenceMdx from './longest-consecutive-sequence.mdx.json' assert { type: 'json' }
 import storybookFeaturesMdx from './storybook-features.mdx.json' assert { type: 'json' }
 import thingsYouMightNotKnowAboutTsMdx from './things-you-might-not-know-about-ts.mdx.json' assert { type: 'json' }
-import analyticsEngineering__buildingModernAnalyticsPart_4Mdx from './analytics-engineering__building-modern-analytics-part-4.mdx.json' assert { type: 'json' }
-import analyticsEngineering__buildingModernAnalyticsPart_7Mdx from './analytics-engineering__building-modern-analytics-part-7.mdx.json' assert { type: 'json' }
-import analyticsEngineering__buildingModernAnalyticsMdx from './analytics-engineering__building-modern-analytics.mdx.json' assert { type: 'json' }
-import analyticsEngineering__designingTheArchitectureMdx from './analytics-engineering__designing-the-architecture.mdx.json' assert { type: 'json' }
-import analyticsEngineering__factsVsDimensionTablesPart_6Mdx from './analytics-engineering__facts-vs-dimension-tables-part-6.mdx.json' assert { type: 'json' }
-import analyticsEngineering__finalArticleMdx from './analytics-engineering__final-article.mdx.json' assert { type: 'json' }
-import analyticsEngineering__fromRawDataPart_1Mdx from './analytics-engineering__from-raw-data-part-1.mdx.json' assert { type: 'json' }
-import analyticsEngineering__host_360_martMdx from './analytics-engineering__host_360_mart.mdx.json' assert { type: 'json' }
-import analyticsEngineering__intermediateModelsPart_5Mdx from './analytics-engineering__intermediate-models-part-5.mdx.json' assert { type: 'json' }
-import analyticsEngineering__listing360_martMdx from './analytics-engineering__listing360_mart.mdx.json' assert { type: 'json' }
-import analyticsEngineering__mart_neighborhood_summaryMdx from './analytics-engineering__mart_neighborhood_summary.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_1Mdx from './analytics-engineering__part-1.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_10Mdx from './analytics-engineering__part-10.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_11Mdx from './analytics-engineering__part-11.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_2Mdx from './analytics-engineering__part-2.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_3Mdx from './analytics-engineering__part-3.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_4Mdx from './analytics-engineering__part-4.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_5Mdx from './analytics-engineering__part-5.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_6Mdx from './analytics-engineering__part-6.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_7Mdx from './analytics-engineering__part-7.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_8Mdx from './analytics-engineering__part-8.mdx.json' assert { type: 'json' }
+import analyticsEngineering__part_9Mdx from './analytics-engineering__part-9.mdx.json' assert { type: 'json' }
 
-export const allBlogs = [accessibilityMdx, browserRenderingOptimizationMdx, dynamicFormMdx, editingGitCommitsMdx, linuxCliTipsMdx, longestConsecutiveSequenceMdx, storybookFeaturesMdx, thingsYouMightNotKnowAboutTsMdx, analyticsEngineering__buildingModernAnalyticsPart_4Mdx, analyticsEngineering__buildingModernAnalyticsPart_7Mdx, analyticsEngineering__buildingModernAnalyticsMdx, analyticsEngineering__designingTheArchitectureMdx, analyticsEngineering__factsVsDimensionTablesPart_6Mdx, analyticsEngineering__finalArticleMdx, analyticsEngineering__fromRawDataPart_1Mdx, analyticsEngineering__host_360_martMdx, analyticsEngineering__intermediateModelsPart_5Mdx, analyticsEngineering__listing360_martMdx, analyticsEngineering__mart_neighborhood_summaryMdx]
+export const allBlogs = [accessibilityMdx, browserRenderingOptimizationMdx, dynamicFormMdx, editingGitCommitsMdx, linuxCliTipsMdx, longestConsecutiveSequenceMdx, storybookFeaturesMdx, thingsYouMightNotKnowAboutTsMdx, analyticsEngineering__part_1Mdx, analyticsEngineering__part_10Mdx, analyticsEngineering__part_11Mdx, analyticsEngineering__part_2Mdx, analyticsEngineering__part_3Mdx, analyticsEngineering__part_4Mdx, analyticsEngineering__part_5Mdx, analyticsEngineering__part_6Mdx, analyticsEngineering__part_7Mdx, analyticsEngineering__part_8Mdx, analyticsEngineering__part_9Mdx]
