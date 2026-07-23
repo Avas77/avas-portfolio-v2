@@ -19,6 +19,7 @@ export type Blog = {
   image?: string | undefined
   series?: string | undefined
   order?: number | undefined
+  seriesTitle?: string | undefined
   draft: boolean
   /** MDX file body */
   body: MDX
