@@ -9,7 +9,7 @@ export const socialLinks = [
     id: 2,
     label: "LinkedIn",
     imgPath: "/assets/social-links/Linkedin.svg",
-    url: "https://www.linkedin.com/in/avas-bajracharya-640357200/",
+    url: "https://www.linkedin.com/in/avasbajracharya/",
   },
   {
     id: 3,
