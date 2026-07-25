@@ -13,8 +13,8 @@ const AboutHero = () => {
       />
       <div className="relative">
         <Image
-          src={"/assets/about-img.png"}
-          alt="About Image"
+          src={"/assets/avas-about-img.png"}
+          alt="avas-bajracharya"
           width={339}
           height={507}
           className="ml-[90px]"
