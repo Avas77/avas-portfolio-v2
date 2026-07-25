@@ -28,7 +28,7 @@ const Description = ({ classNames, showButton }: IDescriptionProps) => {
         </span>
         <span>
           Today, I build end-to-end solutions; developing applications, designing data pipelines, and creating 
-          models that turn data into actionable insights and real business value. Based in Johnson City, Tennessee,
+          models that turn data into actionable insights and real business value. Based in USA,
           I&apos;m passionate about continuous learning and using technology to solve complex, real-world problems.
         </span>
         <span>

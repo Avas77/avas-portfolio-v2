@@ -31,7 +31,7 @@ const HeroImage = () => {
         <div className="bg-primary w-4 h-4" aria-hidden="true"></div>
         <span className="text-gray">Currently working on</span>
         <strong className="font-semibold">
-          Predictive Real Estate Investment Model
+          Airbnb Analytics Platform
         </strong>
       </div>
     </section>
