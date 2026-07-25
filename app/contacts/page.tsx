@@ -20,7 +20,7 @@ const Contacts = () => {
   const socailContacts = (
     <>
       <LinkButton
-        url="https://www.linkedin.com/in/avas-bajracharya-640357200/"
+        url="https://www.linkedin.com/in/avasbajracharya/"
         openInNewtab
       >
         <SocialContact

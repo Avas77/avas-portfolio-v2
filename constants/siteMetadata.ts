@@ -10,7 +10,7 @@ export const siteMetadata = {
   social: {
     email: "avasbajracharya9@gmail.com",
     x: "https://twitter.com/AvasBuzz",
-    linkedinLink: `https://www.linkedin.com/in/avas-bajracharya-640357200/`,
+    linkedinLink: `https://www.linkedin.com/in/avasbajracharya/`,
     githubLink: `https://github.com/Avas77`,
   },
 };

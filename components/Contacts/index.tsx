@@ -10,7 +10,7 @@ const Contacts = () => {
     <>
       <LinkButton
         openInNewtab
-        url="https://www.linkedin.com/in/avas-bajracharya-640357200/"
+        url="https://www.linkedin.com/in/avasbajracharya/"
       >
         <SocialContact
           path={"/assets/social-links/Linkedin.svg"}
