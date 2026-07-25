@@ -13,8 +13,8 @@ const HeroImage = () => {
           className="absolute top-20"
         />
         <Image
-          src={"/assets/home-img.png"}
-          alt="Hoodie Man"
+          src={"/assets/avas-hero-img.png"}
+          alt="avas-hero-img"
           width={457}
           height={386}
           className="relative z-10 ml-auto"

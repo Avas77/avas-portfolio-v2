@@ -27,7 +27,7 @@ const Description = ({ classNames, showButton }: IDescriptionProps) => {
          into data engineering, analytics, and AI/ML.
         </span>
         <span>
-          Today, I build end-to-end solutions—developing applications, designing data pipelines, and creating 
+          Today, I build end-to-end solutions; developing applications, designing data pipelines, and creating 
           models that turn data into actionable insights and real business value. Based in Johnson City, Tennessee,
           I&apos;m passionate about continuous learning and using technology to solve complex, real-world problems.
         </span>
