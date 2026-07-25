@@ -5,12 +5,12 @@ export const skillsList = [
   },
   {
     skillGroup: "Databases & Storage",
-    skills: "PostgreSQL MySQL MongoDB SQLite",
+    skills: "PostgreSQL MySQL MongoDB SQLite Snowflake",
   },
   {
     skillGroup: "Tools & Platforms",
     skills:
-      "Git GitHub Docker AWS (S3 EC2 Lambda) Linux Power BI Tableau Streamlit Airflow",
+      "Git GitHub dbt Docker AWS (S3 EC2 Lambda) Linux Power BI Tableau Streamlit Airflow",
   },
     {
     skillGroup: "Data & Engineering",

@@ -56,6 +56,26 @@ export const clientApps = [
 export const personalApps = [
   {
     id: 1,
+    name: "Airbnb Analytics Platform",
+    tech: "SQL, dbt, Snowflake, AWS S3, Power BI",
+    imgPath: "/assets/project_img/airbnb-executive.png",
+    description:
+      "Built an end-to-end analytics pipeline using Airflow, Snowflake, dbt, and Power BI to transform raw Airbnb data into business-ready insights and interactive dashboards.",
+    url: "https://app.powerbi.com/view?r=eyJrIjoiNmJhNmQ2MjEtMzA1OC00ZGI4LTkzOTEtNzZjMmQ1YTAwNDE2IiwidCI6Ijk2MjQ0MWQ1LTUwNTUtNDM0OS1iYWQzLWJhZWM0M2MzZDc0MSIsImMiOjN9",
+    github: "https://github.com/Avas77/airbnb-analytics-v2",
+  },
+  {
+    id: 2,
+    name: "Bank Performance Analytics",
+    tech: "Python, SQL, dbt, Snowflake, AWS S3, Power BI",
+    imgPath: "/assets/project_img/bank-dashboard.png",
+    description:
+      "Analyzed banking KPIs using SQL and Python to uncover trends in customer behavior, financial performance, and operational efficiency through interactive visualizations.",
+    url: "https://app.powerbi.com/view?r=eyJrIjoiNjUyMjgzMTItODNlYy00NzNkLTgzYzItMTU5ZjliYmRiY2QxIiwidCI6Ijk2MjQ0MWQ1LTUwNTUtNDM0OS1iYWQzLWJhZWM0M2MzZDc0MSIsImMiOjN9",
+    github: "https://github.com/Avas77/bank-performance-analysis",
+  },
+  {
+    id: 2,
     name: "Retail Profitability & Discount Optimization",
     tech: "Python, pandas, NumPy, Matplotlib, Seaborn, Statsmodels, Power BI",
     imgPath: "/assets/project_img/retail-sales-dashboard.png",
@@ -65,7 +85,7 @@ export const personalApps = [
     github: "https://github.com/Avas77/retail-sales-analysis",
   },
   {
-    id: 2,
+    id: 3,
     name: "Probabilistic FIFA World Cup Outcome Modeling (2026)",
     tech: "Python, pandas, NumPy, scikit-learn, Statsmodels, Matplotlib, Seaborn Tableau",
     imgPath: "/assets/project_img/soccer-dashboard.jpg",
@@ -75,7 +95,7 @@ export const personalApps = [
     github: "https://github.com/Avas77/worldcup-prediction",
   },
   {
-    id: 3,
+    id: 4,
     name: "Building a Real Estate Forecasting Engine: The Rent vs. Buy Problem",
     tech: "pandas streamlit scikit-learn",
     imgPath: "/assets/project_img/real-estate.png",
@@ -85,7 +105,7 @@ export const personalApps = [
     github: "https://github.com/Avas77/zillow-property-research",
   },
   {
-    id: 4,
+    id: 5,
     name: "Behind the Trends: YouTube Engagement & Pipeline Analysis",
     tech: "pandas streamlit matplotlib",
     imgPath: "/assets/project_img/youtube.png",
@@ -95,7 +115,7 @@ export const personalApps = [
     github: "https://github.com/Avas77/youtube-trend-analysis",
   },
   {
-    id: 5,
+    id: 6,
     name: "Normalized Airbnb Listings & Revenue Insights",
     tech: "SQL PowerBI pandas",
     imgPath: "/assets/project_img/airbnb.png",
@@ -105,7 +125,7 @@ export const personalApps = [
     github: "https://github.com/Avas77/airbnb-analysis",
   },
   {
-    id: 6,
+    id: 7,
     name: "Covid - 19 Info and Tracker Application",
     tech: "React.js Material UI Github",
     imgPath: "/assets/project_img/covid.png",
@@ -115,7 +135,7 @@ export const personalApps = [
     github: "https://github.com/robina-bajracharya/fight-covid",
   },
   {
-    id: 7,
+    id: 8,
     name: "Avas Portfolio V1",
     tech: "React.js Material UI Sass",
     imgPath: "/assets/project_img/portfolio.png",
